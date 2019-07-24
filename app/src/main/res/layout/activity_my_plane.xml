@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPlane">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:text="EQUIPMENT"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
+        android:text="Tell us what equipment you have"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/noEquBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="107dp"
+        android:layout_toStartOf="@+id/selectTimeBtn"
+        android:text="No Equipment"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/selectEquBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/noEquBtn"
+        android:layout_marginEnd="44dp"
+        android:text="Select Equipment"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/noEquBtn"
+        android:background="@color/design_default_color_primary_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="155dp"
+        android:gravity="center"
+        android:text="WORKOUTS PER WEEK"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="182dp"
+        android:gravity="center"
+        android:text="How many times a week you can practice "
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/selectTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="208dp"
+        android:text="Select"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/selectTimeBtn"
+        android:background="@color/design_default_color_primary_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="254dp"
+        android:gravity="center"
+        android:text="HEIGHT / WEIGHT"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="What's your height and your weight"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/heightEt"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/noEquBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="223dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number|numberDecimal"
+        android:text="height"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/weightEt"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/heightEt"
+        android:layout_toEndOf="@+id/selectTimeBtn"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number|numberDecimal"
+        android:text="weight"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="211dp"
+        android:background="@color/design_default_color_primary_dark" />
+
+
+    <Button
+        android:id="@+id/continuenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:text="let's start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="157dp"
+        android:text="The best time to start is today"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="115dp"
+        android:text="Date"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

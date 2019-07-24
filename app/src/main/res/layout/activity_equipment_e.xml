@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EquipmentE">
+
+
+    <ImageView
+        android:id="@+id/medicinboxIVE"
+        android:layout_width="175dp"
+        android:layout_height="119dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/dumbbellIVE"
+        app:srcCompat="@drawable/medicineball" />
+
+    <ImageView
+        android:id="@+id/dumbbellIVE"
+        android:layout_width="194dp"
+        android:layout_height="117dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="117dp"
+        app:srcCompat="@drawable/dumbbell" />
+
+    <ImageView
+        android:id="@+id/benchIVE"
+        android:layout_width="186dp"
+        android:layout_height="118dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="-55dp"
+        android:layout_marginTop="158dp"
+        android:layout_toStartOf="@+id/equipmentTVe"
+        app:srcCompat="@drawable/bench" />
+
+    <TextView
+        android:id="@+id/selectEquipmentTVE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="Select equipment"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/equipmentTVe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:textSize="25dp"
+        android:text="Equipment"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/boxIVE"
+        android:layout_width="150dp"
+        android:layout_height="116dp"
+        android:layout_alignStart="@+id/medicinboxIVE"
+        android:layout_alignTop="@+id/benchIVE"
+        app:srcCompat="@drawable/boxp" />
+
+    <TextView
+        android:id="@+id/benchTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/benchIVE"
+        android:layout_alignStart="@+id/dumbbellTV"
+        android:layout_marginBottom="-158dp"
+        android:text="Bench" />
+
+    <TextView
+        android:id="@+id/dumbbellTV"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_above="@+id/medicinboxIVE"
+        android:layout_toEndOf="@+id/returnIBE"
+        android:text="Dumbbell" />
+
+    <TextView
+        android:id="@+id/boxTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/benchIVE"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-158dp"
+        android:layout_marginEnd="87dp"
+        android:text="Box" />
+
+    <TextView
+        android:id="@+id/medicineballTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/medicinboxIVE"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="51dp"
+        android:text="Medicine ball" />
+
+    <ImageButton
+        android:id="@+id/returnIBE"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+</RelativeLayout>
