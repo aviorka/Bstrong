@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.aviorka.bstrong.adapter.ScheduleAdapter;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -43,6 +46,11 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_my_plane);
         equipment= new ArrayList<>();
 
+        //TODO get scheduled exercise for user from db into a linked list
+        ScheduleAdapter schedAdapter = new ScheduleAdapter();
+        GridView gv = (GridView) findViewById(R.id.gvSchedule);
+        gv.setAdapter(schedAdapter);
+
         selectEqu = (Button) findViewById(R.id.selectEquBtn);
         noEqu = (Button) findViewById(R.id.noEquBtn);
         selectTimePerWeek = (Button) findViewById(R.id.selectTimeBtn);
@@ -50,7 +58,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         weight = (EditText) findViewById(R.id.weightEt);
         continuen = (Button) findViewById(R.id.continuenBtn);
 
-        //Date shower
+        //Date viewer
         Calendar calendar = Calendar.getInstance();
         currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         TextView dateTv = findViewById(R.id.dateTv);
