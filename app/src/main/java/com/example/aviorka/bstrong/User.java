@@ -10,6 +10,7 @@ public class User implements Parcelable{
     public static final String DB_USER_PASSWORD = "password";
     public static final String DB_USER_ROLE_ID = "roleId";
 
+
     private Integer userId;
     private String fullName;
     private String email;
