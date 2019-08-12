@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import com.example.aviorka.bstrong.fragment.Profile;
+import com.example.aviorka.bstrong.fragment.SchedulePlan;
+
 public class ExercisePlan extends AppCompatActivity {
 
     //    private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -47,16 +50,15 @@ public class ExercisePlan extends AppCompatActivity {
         }
 
         @Override
-        public Fragment getItem(int i) {
+        public Fragment getItem(int tab) {
             Fragment fragment = null;
-            int pageId = roleAuth.getPageId(i);
-            switch(pageId)
+            switch(tab)
             {
                 case 1:
-                    fragment = new OrderFragment();
+                    fragment = new Profile();
                     break;
                 case 2:
-                    fragment = new KitchenFragment();
+                    fragment = new SchedulePlan();
                     break;
             }
 
@@ -68,17 +70,16 @@ public class ExercisePlan extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return roleAuth.getPageCount();
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            int pageId = roleAuth.getPageId(position);
-            switch(pageId){
-                case Restaurant.FRAGMENT_ID_ORDER:
-                    return getResources().getString(R.string.orderFrag_title);
-                case Restaurant.FRAGMENT_ID_KITCHEN:
-                    return getResources().getString(R.string.kitchenFrag_title);
+            switch(position){
+                case 1:
+                    return getResources().getString(R.string.tab_profile);
+                case 2:
+                    return getResources().getString(R.string.tab_schedule);
             }
             return "ERROR " + (position);
         }

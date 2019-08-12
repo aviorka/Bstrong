@@ -9,14 +9,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/Hello lior" />
+        android:text="Hello lior" />
 
     <GridView
         android:id="@+id/gvSchedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="8"
-        android:numRows="9"
+
         android:stretchMode="columnWidth" />
 
 </FrameLayout>
