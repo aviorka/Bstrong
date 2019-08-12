@@ -5,18 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SchedulePlan">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello lior" />
+        android:layout_height="match_parent" >
 
-    <GridView
-        android:id="@+id/gvSchedule"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="8"
-
-        android:stretchMode="columnWidth" />
-
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </TableRow>
+    <!-- todo Add days and body parts and list  -->
 </FrameLayout>
