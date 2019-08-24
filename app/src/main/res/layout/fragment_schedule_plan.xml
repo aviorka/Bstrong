@@ -61,89 +61,73 @@ android:columnCount="1" >
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
     <Space
-        android:layout_width="wrap_content"
+        android:layout_width="66dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
     <TextView
+        android:gravity="center"
         android:id="@+id/tvSunday"
-        android:layout_width="wrap_content"
+        android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Su" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+
+
     <TextView
         android:id="@+id/tvMonday"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Mo" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
     <TextView
         android:id="@+id/tvTuesday"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Tu" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
     <TextView
         android:id="@+id/tvWednesday"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="We" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+
     <TextView
         android:id="@+id/tvThursday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Th" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
     <TextView
         android:id="@+id/tvFriday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Fr" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
     <TextView
         android:id="@+id/tvSaturday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_width="49dp"        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Sa" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
 </LinearLayout>
     <!-- Legs -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/tvLegs"
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Legs" />
@@ -215,10 +199,12 @@ android:columnCount="1" >
     <!-- Back -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Back" />
@@ -290,10 +276,12 @@ android:columnCount="1" >
     <!-- Chest -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/tvChest"
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Chest" />
@@ -365,11 +353,13 @@ android:columnCount="1" >
     <!-- Biceps Flexion -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/tvBiceps"
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Biceps" />
@@ -429,6 +419,163 @@ android:columnCount="1" >
             android:layout_weight="1" />
         <TextView
             android:id="@+id/tvBiceps6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <!-- Triceps Extension -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvTriceps"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:text="Triceps" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvTriceps6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <!-- Shoulders -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvShoulders"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:text="Shoulders" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvShoulders6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
