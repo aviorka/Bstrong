@@ -56,7 +56,7 @@ android:columnCount="1" >
 
     <TextView
         android:layout_gravity="center_horizontal"
-        android:text="Lior tamir"
+        android:text="Lior Tamir "
         android:textSize="32dip" />
 
 <LinearLayout
@@ -130,71 +130,60 @@ android:columnCount="1" >
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Legs" />
-        <Space
-            android:layout_width="wrap_content"
+            android:text="Legs"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvLegs0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvLegs1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvLegs2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+
         <TextView
             android:id="@+id/tvLegs3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvLegs4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvLegs5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+        <!-- back -->
         <TextView
             android:id="@+id/tvLegs6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
     </LinearLayout>
     <!-- Back -->
     <LinearLayout
@@ -202,76 +191,66 @@ android:columnCount="1" >
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/tvBack"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Back" />
-        <Space
-            android:layout_width="wrap_content"
+            android:text="Back"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvBack0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBack1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBack2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+
         <TextView
             android:id="@+id/tvBack3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBack4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBack5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+        <!-- back -->
         <TextView
             android:id="@+id/tvBack6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
     </LinearLayout>
     <!-- Chest -->
     <LinearLayout
@@ -279,77 +258,62 @@ android:columnCount="1" >
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/tvChest"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Chest" />
-        <Space
-            android:layout_width="wrap_content"
+            android:text="Chest"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvChest0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvChest1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvChest2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"   />         android:text="" />
+
         <TextView
             android:id="@+id/tvChest3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"            android:text="" />
         <TextView
             android:id="@+id/tvChest4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"            android:text="" />
         <TextView
             android:id="@+id/tvChest5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"            android:text="" />
         <TextView
             android:id="@+id/tvChest6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"            android:text="" />
     </LinearLayout>
+
     <!-- Biceps Flexion -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -362,74 +326,62 @@ android:columnCount="1" >
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Biceps" />
-        <Space
-            android:layout_width="wrap_content"
+            android:text="Biceps"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvBiceps0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBiceps1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBiceps2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+
         <TextView
             android:id="@+id/tvBiceps3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBiceps4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvBiceps5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+        <!-- back -->
         <TextView
             android:id="@+id/tvBiceps6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
     </LinearLayout>
-    <!-- Triceps Extension -->
-
+<!--Triceps-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -439,73 +391,62 @@ android:columnCount="1" >
         <TextView
             android:id="@+id/tvTriceps"
             android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Triceps"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvTriceps0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:text="Triceps" />
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvTriceps1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvTriceps2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+
         <TextView
             android:id="@+id/tvTriceps3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvTriceps4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvTriceps5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+        <!-- back -->
         <TextView
             android:id="@+id/tvTriceps6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
     </LinearLayout>
     <!-- Shoulders -->
     <LinearLayout
@@ -517,72 +458,102 @@ android:columnCount="1" >
         <TextView
             android:id="@+id/tvShoulders"
             android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Shoulders"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:id="@+id/tvShoulders0"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:text="Shoulders" />
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvShoulders1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvShoulders2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+
         <TextView
             android:id="@+id/tvShoulders3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvShoulders4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
         <TextView
             android:id="@+id/tvShoulders5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
+        <!-- back -->
         <TextView
             android:id="@+id/tvShoulders6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="" />
-        <Space
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="start"
+            android:background="@drawable/border"
+            android:text="" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+
+            <TextView
+                android:id="@+id/tvDetailText"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:height="200dp"
+                android:background="@drawable/border"
+                android:text="Exercise" />
+
+            <TextView
+                android:id="@+id/tvDetailImage"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:height="200dp"
+                android:background="@mipmap/ic_launcher"
+                android:text="Image :)" />
+
+
+    </LinearLayout>
+
 </GridLayout>
