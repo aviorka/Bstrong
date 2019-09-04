@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aviorka.bstrong.DB_Managment.DataObjects.Trainee;
+import com.example.aviorka.bstrong.persistence.DataObjects.Trainee;
+import com.example.aviorka.bstrong.persistence.TraineeTable;
 
 import java.util.regex.Pattern;
 

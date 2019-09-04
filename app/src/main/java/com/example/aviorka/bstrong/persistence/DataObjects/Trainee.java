@@ -1,12 +1,10 @@
-package com.example.aviorka.bstrong.DB_Managment.DataObjects;
-
-import com.example.aviorka.bstrong.DB_Managment.Interfaces.DB_Data;
+package com.example.aviorka.bstrong.persistence.DataObjects;
 
 /*
 * Trainee
 * Get and set methods
 */
-public class Trainee implements DB_Data {
+public class Trainee {
 
     private long id;
     private String username;

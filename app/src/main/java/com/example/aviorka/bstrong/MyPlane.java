@@ -33,6 +33,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     String totalEquipment = "";
     String heightStr ;
     String weightStr;
+
     private Button selectEqu, noEqu, selectTimePerWeek, continuen;
     private EditText height = null, weight = null;
     String timePerWeek = null, currentDate = null;

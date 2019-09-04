@@ -1,4 +1,4 @@
-package com.example.aviorka.bstrong;
+package com.example.aviorka.bstrong.persistence;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,28 +6,65 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.aviorka.bstrong.DB_Managment.DataObjects.Trainee;
-import com.example.aviorka.bstrong.DB_Managment.Interfaces.DB_Data;
+import com.example.aviorka.bstrong.persistence.DataObjects.Trainee;
 
 import java.util.ArrayList;
 
 /**
  * Trainee Table
+ * Equipment Table
+ * Recurrence Table
+ * plan Table
+ * Exercise Table
  * Database
  */
 public class TraineeTable extends SQLiteOpenHelper  {
 
     private static TraineeTable instance;
     // Database Name
-    public static final String DATABASE_NAME = "Bstrong.db";
+    public static final String DATABASE_NAME = "BStrong.db";
     // Contacts table name
-    public static final String TABLE_NAME = "trainee";
+    public static final String TRAINEE_TABLE = "trainee";// User table name
+    public static final String EQUIPMENT_TABLE = "equipment";// Equipment table name
+    public static final String RECURRENCE_TABLE = "recurrence";// Recurrence table name
+    public static final String PLAN_TABLE = "plan";// Plan table name
+    public static final String EXERCISE_TABLE = "exercise";// Exercise table name
+
+
     // Trainee Table Columns names
-    public static final String COL_ID = "ID";
-    public static final String COL_USERNAME = "USERNAME";
-    public static final String COL_NAME = "NAME";
+    public static final String COL_USER_ID = "ID";
+    public static final String COL_USERNAME = "FULL_NAME";
     public static final String COL_PASS = "PASSWORD";
     public static final String COL_EMAIL = "EMAIL";
+    public static final String COL_AGE = "AGE";
+    public static final String COL_WEIGHT = "WEIGHT";
+
+    // Equipment Table Columns names
+    public static final String COL_EQUIPMENT_ID = "ID";
+    public static final String COL_EQUIPMENT_NAME = "NAME";
+
+    // Muscle Table Columns names
+    public static final String COL_MUSCLE_ID = "ID";
+    public static final String COL_MUSCLE_NAME = "NAME";
+
+    // Recurrence Table Columns names
+    public static final String COL_RECURRENCE_ID = "ID";
+    public static final String COL_RECURRENCE_NAME = "FULL_NAME";
+    public static final String COL_WEEKLYDAYS = "WEEKLYDAYS";
+
+    // Plan Table Columns names
+    public static final String COL_PLAN_ID = "ID";
+    public static final String COL_EQUIPMENTID = "EQUIPMENT_ID";
+    public static final String COL_RECURRENCEID = "RECURRENCE_ID";
+
+    // Exercise Table Columns names
+    public static final String COL_EXERCISE_ID = "ID";
+    //TODO
+    //Add COLUMNS :
+    //equipmentID , muscleId , recurrenceID
+    public static final String COL_SESSIONS_ID = "SESSIONS";
+    public static final String COL_REPETITIONS_ID = "REPETITIONS";
+
 
     public static final int DATABASE_VERSION = 1;
 
@@ -48,7 +85,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTraineeTable = "create table trainee (" + COL_ID + " integer primary key AUTOINCREMENT  ,"
+        String createTraineeTable = "create table trainee (" + COL_USER_ID + " integer primary key AUTOINCREMENT  ,"
                 + COL_USERNAME + " text not null, "
                 + COL_NAME + " text not null, "
                 + COL_PASS + " text not null, "
@@ -63,7 +100,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TRAINEE_TABLE);
         // Creating tables again
         this.onCreate(db);
     }
@@ -83,7 +120,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
 
 
         // Inserting Row
-        db.insert(TABLE_NAME, null, values);
+        db.insert(TRAINEE_TABLE, null, values);
         // Closing database connection
         db.close();
     }
@@ -95,9 +132,9 @@ public class TraineeTable extends SQLiteOpenHelper  {
         SQLiteDatabase db = this.getWritableDatabase();
         String quary = null;
 
-        quary = "UPDATE " + TABLE_NAME + " SET " + COL_NAME +
+        quary = "UPDATE " + TRAINEE_TABLE + " SET " + COL_NAME +
                 " = '" + trainee.getName() + "' , " + COL_USERNAME + " = '"+trainee.getUsername()+"'" +
-                " WHERE " + COL_ID + " = '" + trainee.getId() + "'";
+                " WHERE " + COL_USER_ID + " = '" + trainee.getId() + "'";
 
         db.execSQL(quary);
     }
@@ -105,15 +142,15 @@ public class TraineeTable extends SQLiteOpenHelper  {
     //Delete by id
     public void delete(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String quary = "DELETE FROM " + TABLE_NAME + " WHERE "
-                + COL_ID + " = '" + id + "'" ;
+        String quary = "DELETE FROM " + TRAINEE_TABLE + " WHERE "
+                + COL_USER_ID + " = '" + id + "'" ;
 
         db.execSQL(quary);
     }
 
     //Count trainees
     public int count() {
-        String countQuery = "SELECT  * FROM " + TABLE_NAME;
+        String countQuery = "SELECT  * FROM " + TRAINEE_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
@@ -123,7 +160,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
 
     //Get trainee by id
     public DB_Data getById(int id) {
-        String countQuery = "SELECT  * FROM " + TABLE_NAME +  " WHERE " + COL_ID + " = '" + id + "'";;
+        String countQuery = "SELECT  * FROM " + TRAINEE_TABLE +  " WHERE " + COL_USER_ID + " = '" + id + "'";;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
@@ -132,7 +169,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
 
     public ArrayList<DB_Data> getList() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String quary = "SELECT * FROM " + TABLE_NAME;
+        String quary = "SELECT * FROM " + TRAINEE_TABLE;
         Cursor mCursor = db.rawQuery(quary, null);
         ArrayList<DB_Data> trainees = new ArrayList<DB_Data>();
         mCursor.moveToFirst();
@@ -162,7 +199,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     public boolean checkIfEmailExists(String userEmail) {
         db = this.getReadableDatabase();
 
-        String query = "select " + COL_EMAIL + " from " + TABLE_NAME + " where " + COL_EMAIL + " = '" + userEmail + "';";
+        String query = "select " + COL_EMAIL + " from " + TRAINEE_TABLE + " where " + COL_EMAIL + " = '" + userEmail + "';";
         Cursor cursor = db.rawQuery(query, null);
 
 
@@ -177,7 +214,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     public boolean checkIfUserExists(String username) {
         db = this.getReadableDatabase();
 
-        String query = "select " + COL_PASS + " from " + TABLE_NAME + " where " + COL_PASS + " = '" + username + "';";
+        String query = "select " + COL_PASS + " from " + TRAINEE_TABLE + " where " + COL_PASS + " = '" + username + "';";
         Cursor cursor = db.rawQuery(query, null);
 
 
@@ -194,7 +231,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
         //Read data from dataBase
         db = this.getReadableDatabase();
 
-        String query = "select " + COL_USERNAME + " from " + TABLE_NAME + " where " + COL_USERNAME + " = '" + username + "';";
+        String query = "select " + COL_USERNAME + " from " + TRAINEE_TABLE + " where " + COL_USERNAME + " = '" + username + "';";
         Cursor cursor = db.rawQuery(query, null);
 
 
@@ -211,7 +248,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
         //Read data from dataBase
         db = this.getReadableDatabase();
 
-        String query = "select " + COL_PASS + " from " + TABLE_NAME + " where " + COL_PASS + " = '" + pass + "';";
+        String query = "select " + COL_PASS + " from " + TRAINEE_TABLE + " where " + COL_PASS + " = '" + pass + "';";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToNext()) {
@@ -227,7 +264,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
         //Read data from dataBase
         db = this.getReadableDatabase();
 
-        String query = "select " + COL_PASS + "," + COL_USERNAME + " from " + TABLE_NAME + " where " + COL_PASS + " = '" + pass + "' and + " + COL_USERNAME + " = '" + username + "';";
+        String query = "select " + COL_PASS + "," + COL_USERNAME + " from " + TRAINEE_TABLE + " where " + COL_PASS + " = '" + pass + "' and + " + COL_USERNAME + " = '" + username + "';";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToNext()) {
@@ -240,7 +277,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     //Returns only the ID that matches the name passed in
     public Cursor getTraineeID(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String quary = "SELECT " + COL_ID + " FROM " + TABLE_NAME +
+        String quary = "SELECT " + COL_USER_ID + " FROM " + TRAINEE_TABLE +
                 " WHERE " + COL_NAME + " = '" + name + "'";
         Cursor data = db.rawQuery(quary, null);
         return data;

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aviorka.bstrong.persistence.TraineeTable;
+
 /**
  * Login
  * This class for login
