@@ -23,6 +23,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
     private static TraineeTable instance;
     // Database Name
     public static final String DATABASE_NAME = "BStrong.db";
+
     // Contacts table name
     public static final String TRAINEE_TABLE = "trainee";// User table name
     public static final String EQUIPMENT_TABLE = "equipment";// Equipment table name
@@ -81,20 +82,6 @@ public class TraineeTable extends SQLiteOpenHelper  {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //onCreat
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        String createTraineeTable = "create table trainee (" + COL_USER_ID + " integer primary key AUTOINCREMENT  ,"
-                + COL_USERNAME + " text not null, "
-                + COL_NAME + " text not null, "
-                + COL_PASS + " text not null, "
-                + COL_EMAIL + " text not null );";
-
-        //Execut the queay
-        db.execSQL(createTraineeTable);
-        this.db = db;
-    }
 
     //onUpgrade
     @Override
@@ -114,7 +101,6 @@ public class TraineeTable extends SQLiteOpenHelper  {
         ContentValues values = new ContentValues();
 
         values.put(COL_USERNAME, trainee.getUsername());
-        values.put(COL_NAME, trainee.getName());
         values.put(COL_PASS, trainee.getPassword());
         values.put(COL_EMAIL, trainee.getEmail());
 
@@ -132,8 +118,7 @@ public class TraineeTable extends SQLiteOpenHelper  {
         SQLiteDatabase db = this.getWritableDatabase();
         String quary = null;
 
-        quary = "UPDATE " + TRAINEE_TABLE + " SET " + COL_NAME +
-                " = '" + trainee.getName() + "' , " + COL_USERNAME + " = '"+trainee.getUsername()+"'" +
+        quary = "UPDATE " + TRAINEE_TABLE + " SET "  + "' , " + COL_USERNAME + " = '"+trainee.getUsername()+"'" +
                 " WHERE " + COL_USER_ID + " = '" + trainee.getId() + "'";
 
         db.execSQL(quary);
@@ -283,6 +268,65 @@ public class TraineeTable extends SQLiteOpenHelper  {
         return data;
     }
 
+
+
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table trainee(traineeId integer primary key," +
+                "fullName text not null, "+
+                "email text not null, "+
+                "password text not null, "+
+                "age integer not null, "+
+                "weight integer not null)");
+
+        db.execSQL("create table equipment(equipmentId integer primary key," +
+                "name text not null)");
+
+        db.execSQL("create table recurrence(recurrenceId integer primary key autoincrement, " +
+                "name text not null, "+
+                "weeklyDays integer not null)");
+
+        db.execSQL("create table [plan](planId integer primary key autoincrement, " +
+                "equipmentID integer not null, " +
+                "recurrenceId integer not null, "  +
+                "foreign key(equipmentID) references equipment(equipmentId),"+
+                "foreign key(recurrenceId) references recurrence(recurrenceId))");
+
+        db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
+                "name text not null)");
+
+        db.execSQL("create table exercise(exerciseId integer primary key autoincrement, " +
+                "muscleId integer not null, " +
+                "recurrenceId integer not null, " +
+                "session integer not null, " +
+                "repetitions integer not null, " +
+                "foreign key(muscleId) references muscle(muscleId),"+
+                "foreign key(recurrenceId) references recurrence(recurrenceId))");
+
+        //Insert into Equipment table
+        db.execSQL("insert into equipment values(null,\"Dumbbell\")");
+        db.execSQL("insert into equipment values(null,\"bench\")");
+        db.execSQL("insert into equipment values(null,\"box\")");
+        db.execSQL("insert into equipment values(null,\"medicine Box\")");
+
+        // metadata
+        db.execSQL("insert into recurrence values(null,\"Low intensity\",1)");
+        db.execSQL("insert into recurrence values(null,\"Medium intensity\",2)");
+        db.execSQL("insert into recurrence values(null,\"High intensity\",3)");
+
+        // metadata
+        db.execSQL("insert into muscle values(null,\"Legs\")");
+        db.execSQL("insert into muscle values(null,\"Chest\")");
+        db.execSQL("insert into muscle values(null,\"Back\")");
+        db.execSQL("insert into muscle values(null,\"Biceps\")");
+        db.execSQL("insert into muscle values(null,\"Triceps\")");
+        db.execSQL("insert into muscle values(null,\"Shoulders\")");
+        db.execSQL("insert into muscle values(null,\"Legs\")");
+        db.execSQL("insert into muscle values(null,\"ABS\")");
+
+
+    }
 
 
 }
