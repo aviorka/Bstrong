@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aviorka.bstrong.persistence.TraineeTable;
+import com.example.aviorka.bstrong.persistence.Storage;
 
 /**
  * Login
@@ -17,7 +17,7 @@ import com.example.aviorka.bstrong.persistence.TraineeTable;
  */
 public class Login extends AppCompatActivity {
 
-    TraineeTable helper = TraineeTable.geInstance(this);
+    Storage helper = Storage.geInstance(this);
     private TextInputLayout textInputPassword;
     private TextInputLayout textInputUsername;
 
