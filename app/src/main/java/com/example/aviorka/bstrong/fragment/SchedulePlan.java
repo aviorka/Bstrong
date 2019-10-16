@@ -1,5 +1,6 @@
 package com.example.aviorka.bstrong.fragment;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,8 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.aviorka.bstrong.R;
+import com.example.aviorka.bstrong.persistence.Storage;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,8 +33,17 @@ public class SchedulePlan extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    //TODO Complete idMapping
+    int [][] idMapping = {{R.id.tvLegs0, R.id.tvLegs1, R.id.tvLegs2, R.id.tvLegs3, R.id.tvLegs4, R.id.tvLegs5, R.id.tvLegs6},
+            {}, {}, {}, {}};
 
+
+    private static final int RECU_1 =1;
+    private static final int RECU_2 =2;
+    private static final int RECU_3 =3;
+
+    private OnFragmentInteractionListener mListener;
+    private Storage db ;
     public SchedulePlan() {
         // Required empty public constructor
     }
@@ -55,11 +69,53 @@ public class SchedulePlan extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = Storage.geInstance(this.getContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
+
+    /**
+     * Retrieve data depicting a single exercise for a week
+     * according to the user selected frequency.
+     */
+    private void showData(){
+
+        List<ContentValues> resultSet = db.getMultiple("select * from exercise", new String[]{});
+        for(ContentValues muscle : resultSet){
+            setExercise(muscle.getAsInteger("muscleId"), muscle.getAsInteger("recurrenceId"));
+        }
+    }
+
+
+    private void setExercise(int muscle, int recurrence){
+        TextView tv = null;
+
+        switch(recurrence){
+            case RECU_1:
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][1]);
+                tv.setText("X");
+                break;
+            case RECU_2:
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][1]);
+                tv.setText("X");
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][3]);
+                tv.setText("X");
+                break;
+            case RECU_3:
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][0]);
+                tv.setText("X");
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][2]);
+                tv.setText("X");
+                tv = (TextView)getView().findViewById(idMapping[muscle-1][4]);
+                tv.setText("X");
+                break;
+        }
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

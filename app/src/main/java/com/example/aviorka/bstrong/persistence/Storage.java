@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Trainee Table
  * Equipment Table
@@ -13,6 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * plan Table
  * Exercise Table
  * Database
+ * Activity
  */
 public class Storage extends SQLiteOpenHelper {
 
@@ -47,6 +51,9 @@ public class Storage extends SQLiteOpenHelper {
                 "recurrenceId integer not null, " +
                 "foreign key(equipmentID) references equipment(equipmentId)," +
                 "foreign key(recurrenceId) references recurrence(recurrenceId))");
+
+        db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
+                "name text not null)");
 
         db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
                 "name text not null)");
@@ -157,5 +164,49 @@ public class Storage extends SQLiteOpenHelper {
         db.close();
         return rs;
     }
+
+
+    public List<ContentValues> getMultiple(String sql, String[] params){
+        SQLiteDatabase db = getReadableDatabase();
+        String[] columnNames = null;
+        if(db == null)
+            return null;
+
+        List<ContentValues> resultSet = new LinkedList<>();
+
+        Cursor cur = db.rawQuery(sql, params);
+
+        columnNames = cur.getColumnNames();
+        while(cur.moveToNext()){
+            ContentValues record = new ContentValues();
+            for(int col = 0; col < columnNames.length; col++){
+                switch(cur.getType(col)){
+                    case 1:
+                        record.put(columnNames[col], cur.getInt(col));
+                        break;
+                    case 2:
+                        record.put(columnNames[col], cur.getString(col));
+                        break;
+                    case 3:
+                        record.put(columnNames[col], cur.getString(col));
+                        break;
+                    case 4:
+                        record.put(columnNames[col], cur.getFloat(col));
+                        break;
+                    case 5: //bool, datetime
+                        break;
+                    case Cursor.FIELD_TYPE_NULL:
+                        record.put(columnNames[col], new String(""));
+                        break;
+                }
+            }
+            resultSet.add(record);
+        }
+
+        cur.close();
+        db.close();
+        return resultSet;
+    }
+
 
 }

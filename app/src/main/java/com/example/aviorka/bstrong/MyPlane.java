@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aviorka.bstrong.adapter.ScheduleAdapter;
+import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -39,6 +40,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     String timePerWeek = null, currentDate = null;
     boolean EquipmentVali = false;
     ArrayList<String> equipment ;
+    private Storage db;
 
 
     @Override
@@ -46,6 +48,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_plane);
         equipment= new ArrayList<>();
+        db = Storage.geInstance(super.getBaseContext());
 
         //TODO get scheduled exercise for user from db into a linked list
         ScheduleAdapter schedAdapter = new ScheduleAdapter();
@@ -54,6 +57,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
         selectEqu = (Button) findViewById(R.id.selectEquBtn);
         noEqu = (Button) findViewById(R.id.noEquBtn);
+
         selectTimePerWeek = (Button) findViewById(R.id.selectTimeBtn);
         height = (EditText) findViewById(R.id.heightEt);
         weight = (EditText) findViewById(R.id.weightEt);
@@ -134,7 +138,10 @@ public class MyPlane extends AppCompatActivity implements Serializable {
             }
         });
 
+        db.getSingle("select  from muscle where muscle = name ", new String[]{});
     }
+
+
     //Building plan ============================================================ MOST IMPORTANT !!
     private void buildingPlan(String timePerWeek, ArrayList<String> equipment) {
 
