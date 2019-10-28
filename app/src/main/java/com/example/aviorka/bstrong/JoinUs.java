@@ -28,7 +28,6 @@ public class JoinUs extends AppCompatActivity {
                     "$");
 
     //The database helper.
-    Storage myDb = Storage.geInstance(this);
 
     private EditText textInputEmail;
     private EditText textInputFullname;
@@ -127,7 +126,7 @@ public class JoinUs extends AppCompatActivity {
 
     //Age validation
     private boolean validateAge(){
-        if(textInputAge.getText().toString().length() > 0 ){
+        if(textInputAge.getText().toString().length() == 0 ){
             textInputAge.setError("Please fill your age ");
             return false;
             } else if(Integer.parseInt(textInputAge.getText().toString()) < 16){

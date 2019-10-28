@@ -55,9 +55,6 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
                 "name text not null)");
 
-        db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
-                "name text not null)");
-
         db.execSQL("create table exercise(exerciseId integer primary key autoincrement, " +
                 "muscleId integer not null, " +
                 "recurrenceId integer not null, " +
@@ -164,6 +161,31 @@ public class Storage extends SQLiteOpenHelper {
         db.close();
         return rs;
     }
+
+    /**
+     * Check if email and password matched in DB
+     * @param email
+     * @param pass
+     * @return
+     */
+    public boolean checkMatcForUser(String email,String pass){
+
+        String sql = "select * from trainee where email = ? and password = ? ";
+        String params[] = {email, pass};
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cur = db.rawQuery(sql, params);
+
+        while(cur.moveToNext()) {
+            cur.close();
+            db.close();
+            return true;
+        }
+
+        cur.close();
+        db.close();
+        return false;
+    }
+
 
 
     public List<ContentValues> getMultiple(String sql, String[] params){

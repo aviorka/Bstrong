@@ -94,7 +94,11 @@ public class SchedulePlan extends Fragment {
         }
     }
 
-
+    /**
+     * set exercises to schedule plan
+     * @param muscle id from DB
+     * @param recurrence id from DB
+     */
     private void setExercise(int muscle, int recurrence){
         TextView tv = null;
 

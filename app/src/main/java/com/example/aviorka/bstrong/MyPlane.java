@@ -52,8 +52,8 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
         //TODO get scheduled exercise for user from db into a linked list
         ScheduleAdapter schedAdapter = new ScheduleAdapter();
-        GridView gv = (GridView) findViewById(R.id.gvSchedule);
-        gv.setAdapter(schedAdapter);
+//        GridView gv = (GridView) findViewById(R.id.gvSchedule);
+//        gv.setAdapter(schedAdapter);
 
         selectEqu = (Button) findViewById(R.id.selectEquBtn);
         noEqu = (Button) findViewById(R.id.noEquBtn);
@@ -64,8 +64,8 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         continuen = (Button) findViewById(R.id.continuenBtn);
 
         //Date viewer
-        Calendar calendar = Calendar.getInstance();
-        currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//        Calendar calendar = Calendar.getInstance();
+//        currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         TextView dateTv = findViewById(R.id.dateTv);
         dateTv.setText(currentDate);
 
@@ -138,7 +138,6 @@ public class MyPlane extends AppCompatActivity implements Serializable {
             }
         });
 
-        db.getSingle("select  from muscle where muscle = name ", new String[]{});
     }
 
 
