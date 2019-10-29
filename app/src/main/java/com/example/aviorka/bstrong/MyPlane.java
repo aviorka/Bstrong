@@ -146,7 +146,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                     if (!hasEquipment && !cbNoEquipment.isChecked()) {
                         Toast.makeText(getApplicationContext(), "Did you forget to mark equipment?: ", Toast.LENGTH_LONG).show();
                         return;
-                    //Continue from here 10/29/19
+                    //TODO Continue from here 10/29/19
                     }else if (checkInput(heightStr, weightStr, currentDate, timePerWeek)) {
                         Toast.makeText(getApplicationContext(), "selection all OK ", Toast.LENGTH_SHORT).show();
                         //Start activity that execute plan for user
