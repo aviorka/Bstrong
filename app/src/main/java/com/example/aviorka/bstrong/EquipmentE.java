@@ -3,6 +3,7 @@ package com.example.aviorka.bstrong;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,6 +11,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * EquipmentE
  * The class get the equipment from trainee
@@ -17,8 +24,35 @@ import android.widget.Toast;
  */
 public class EquipmentE extends AppCompatActivity implements View.OnClickListener {
 
-    boolean dumbbellB = true, benchB = true, boxB = true, medicineBoxB = true;
-    String totalEquipment = " ";
+
+    public class EquipmentState{
+
+        private boolean isSelected;
+        private String name;
+
+        public EquipmentState(boolean isSelected, String name){
+            setSelected(isSelected);
+            setName(name);
+        }
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private Map<Integer, EquipmentState> equipmentStateMap = new HashMap<>();
+    List<String> equipmentList = new ArrayList<>();
 
 
     @Override
@@ -27,16 +61,21 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_equipment_e);
 
 
-        ImageView dumbblle = (ImageView) findViewById(R.id.dumbbellIVE);
+        ImageView dumbbell = (ImageView) findViewById(R.id.dumbbellIVE);
         ImageView bench = (ImageView) findViewById(R.id.benchIVE);
         ImageView box = (ImageView) findViewById(R.id.boxIVE);
         ImageView medicineBox = (ImageView) findViewById(R.id.medicinboxIVE);
         ImageButton returnImage = (ImageButton) findViewById(R.id.returnIBE);
 
-        dumbblle.setOnClickListener(this);
+        dumbbell.setOnClickListener(this);
         bench.setOnClickListener(this);
         box.setOnClickListener(this);
         medicineBox.setOnClickListener(this);
+
+        equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell"));
+        equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench"));
+        equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box"));
+        equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall"));
 
         //Select and send after click the return image
         returnImage.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +83,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent();
                 //Pass data back
-                intent.putExtra("returnData",totalEquipment);
+                intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<String>) equipmentList);
                 setResult(Activity.RESULT_OK, intent );
                 finish();
             }
@@ -56,68 +95,18 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        //If the trainee select it send/deleted
-        switch (view.getId()) {
-            case R.id.dumbbellIVE:
-                if (dumbbellB) {
-                    dumbbellB = false;
-                    toast("You selected dumbbell");
-                    if(!(totalEquipment.toLowerCase().contains("dumbbell".toLowerCase()))){
-                        totalEquipment += ",dumbbell";
-                    }
-                } else {
-                    dumbbellB = true;
-                    toast("No dumbbell");
-                    if(totalEquipment.toLowerCase().contains("dumbbell".toLowerCase())){
-                         totalEquipment = totalEquipment.replaceAll(",dumbbell", "");
-                    }
-                }
-                break;
-            case R.id.benchIVE:
-                if (benchB) {
-                    benchB = false;
-                    toast("You selected bench");
-                    if(!(totalEquipment.toLowerCase().contains(",bench".toLowerCase()))){
-                         totalEquipment += ",bench";
-                    }
-                } else {
-                    benchB = true;
-                    toast("No bench");
-                    if(totalEquipment.toLowerCase().contains(",bench".toLowerCase())) {
-                        totalEquipment = totalEquipment.replaceAll(",bench", "");
-                    }
-                }
-                break;
-            case R.id.boxIVE:
-                if (boxB) {
-                    boxB = false;
-                    toast("You selected box");
-                    if(!(totalEquipment.toLowerCase().contains(",box".toLowerCase()))){
-                        totalEquipment += ",box";
-                    }
-                } else {
-                    boxB = true;
-                    toast("No box");
-                    if (totalEquipment.toLowerCase().contains(",box".toLowerCase())) {
-                        totalEquipment = totalEquipment.replaceAll(",box", "");
-                    }
-                }
-                break;
-            case R.id.medicinboxIVE:
-                if (medicineBoxB) {
-                    medicineBoxB = false;
-                    toast("You selected medicine Box");
-                    if(!(totalEquipment.toLowerCase().contains(",medicine Box".toLowerCase()))){
-                        totalEquipment += ",medicine Box";
-                    }
-                } else {
-                    medicineBoxB = true;
-                    toast("No medicine Box");
-                    if (totalEquipment.toLowerCase().contains(",medicine Box".toLowerCase())) {
-                        totalEquipment = totalEquipment.replaceAll(",medicine Box", "");
-                    }
-                }
-                break;
+        EquipmentState es = equipmentStateMap.get(view.getId());
+
+        if(!es.isSelected()){   //If equipment was not selected select it
+            es.setSelected(true);
+            toast( es.getName() +" was selected");
+            view.setBackground(getResources().getDrawable(R.drawable.background_selected));
+            equipmentList.add(es.getName());
+        }else {
+            es.setSelected(false);
+            toast( es.getName() +" was removed");
+            view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
+            equipmentList.remove(es.getName());
         }
     }
 
@@ -125,8 +114,8 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         return new Intent(context, EquipmentE.class);
     }
     //Toast equipment selection
-    private void toast(String massege){
-        Toast toast = Toast.makeText(getApplicationContext(), massege, Toast.LENGTH_SHORT);
+    private void toast(String message){
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
         return;

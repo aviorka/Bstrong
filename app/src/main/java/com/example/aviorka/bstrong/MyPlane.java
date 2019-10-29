@@ -1,6 +1,7 @@
 package com.example.aviorka.bstrong;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -8,8 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -23,6 +27,8 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+
 /*
 * MyPlane
 * This class collect the information from user
@@ -38,8 +44,14 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     private Button selectEqu, noEqu, selectTimePerWeek, continuen;
     private EditText height = null, weight = null;
     String timePerWeek = null, currentDate = null;
+    private CheckBox cbNoEquipment;
+
     boolean EquipmentVali = false;
-    ArrayList<String> equipment ;
+
+    boolean hasEquipment;
+    boolean hasOpenedEquipActivity;
+
+    List<String> equipment ;
     private Storage db;
 
 
@@ -57,6 +69,8 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
         selectEqu = (Button) findViewById(R.id.selectEquBtn);
         noEqu = (Button) findViewById(R.id.noEquBtn);
+
+        cbNoEquipment = (CheckBox) findViewById(R.id.cbNoEquipment);
 
         selectTimePerWeek = (Button) findViewById(R.id.selectTimeBtn);
         height = (EditText) findViewById(R.id.heightEt);
@@ -89,32 +103,39 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         });
 
 
-
+        cbNoEquipment.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hasEquipment = isChecked;
+            }
+        });
 
         //If the user dont have equipmentCheck
         noEqu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EquipmentVali = false;
-                equipment.add("null");
+                equipment.clear();
             }
         });
+
+        final Context ctx = getApplicationContext();
 
         //select Equipment_
         selectEqu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EquipmentVali = true;
+                hasOpenedEquipActivity = true;
                 //Launch the equipmentE activity
                Intent intent = EquipmentE.makeIntent(MyPlane.this);
                startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
             }
         });
 
+//equipment.toString()
 
 
-
-        //continue button : check the user input
+        //Lets start button : check the user input
         continuen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,9 +143,10 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                 weightStr = weight.getText().toString();
 
                 try {
-                    if (EquipmentVali) {
-                        Toast.makeText(getApplicationContext(), "Select equipment: ", Toast.LENGTH_LONG).show();
+                    if (!hasEquipment && !cbNoEquipment.isChecked()) {
+                        Toast.makeText(getApplicationContext(), "Did you forget to mark equipment?: ", Toast.LENGTH_LONG).show();
                         return;
+                    //Continue from here 10/29/19
                     }else if (checkInput(heightStr, weightStr, currentDate, timePerWeek)) {
                         Toast.makeText(getApplicationContext(), "selection all OK ", Toast.LENGTH_SHORT).show();
                         //Start activity that execute plan for user
@@ -140,9 +162,8 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
     }
 
-
     //Building plan ============================================================ MOST IMPORTANT !!
-    private void buildingPlan(String timePerWeek, ArrayList<String> equipment) {
+    private void buildingPlan(String timePerWeek, List<String> equipment) {
 
         int index = 0;
         //Looping Array List to add the selected equipment to the plan
@@ -152,7 +173,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                 case "box":
                     //Here i want to add the equipment to table
                     break;
-                case "dumbblle":
+                case "dumbbell":
                     break;
                 case "medicine Box":
                     break;
@@ -186,6 +207,22 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
+
+            String[] equipArr;
+            Bundle extras = data.getExtras();
+            if(extras == null) {
+                equipArr= null;
+            } else {
+                equipment= extras.getStringArrayList("SELECTED_EQUIPMENT");
+            }
+            if(equipment.size() == 0)
+                hasEquipment = false;
+            else
+                hasEquipment =true;
+            Toast toast = Toast.makeText(getApplicationContext(),equipment.toString(), Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+
             switch (requestCode){
                 case REQUEST_CODE_GETMESSAGE:
                     if(resultCode == Activity.RESULT_OK){

@@ -48,19 +48,22 @@ public class Storage extends SQLiteOpenHelper {
 
         db.execSQL("create table [plan](planId integer primary key autoincrement, " +
                 "equipmentID integer not null, " +
+                "muscleID integer not null, " +
                 "recurrenceId integer not null, " +
+                "sessions integer not null, " +
+                "repetitions integer not null, " +
+                "imageResourceId text not null, " +
                 "foreign key(equipmentID) references equipment(equipmentId)," +
+                "foreign key(muscleID) references muscle(muscleID)," +
                 "foreign key(recurrenceId) references recurrence(recurrenceId))");
 
         db.execSQL("create table muscle(muscleId integer primary key autoincrement," +
                 "name text not null)");
 
         db.execSQL("create table exercise(exerciseId integer primary key autoincrement, " +
-                "muscleId integer not null, " +
+                "planId integer not null, " +
                 "recurrenceId integer not null, " +
-                "session integer not null, " +
-                "repetitions integer not null, " +
-                "foreign key(muscleId) references muscle(muscleId)," +
+                "foreign key(planID) references [plan](planID)," +
                 "foreign key(recurrenceId) references recurrence(recurrenceId))");
 
         //DML - Data Manipulation language

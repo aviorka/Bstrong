@@ -27,22 +27,15 @@
         android:textStyle="italic" />
 
     <Button
-        android:id="@+id/noEquBtn"
-        android:layout_width="wrap_content"
+        android:id="@+id/selectEquBtn"
+        android:layout_width="121dp"
         android:layout_height="37dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="107dp"
-        android:layout_toStartOf="@+id/selectTimeBtn"
-        android:text="No Equipment"
-        android:textSize="10sp" />
-
-    <Button
-        android:id="@+id/selectEquBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/noEquBtn"
-        android:layout_marginEnd="44dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginEnd="30dp"
+        android:layout_toEndOf="@+id/cbNoEquipment"
         android:text="Select Equipment"
         android:textSize="10sp" />
 
@@ -86,8 +79,20 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="3dp"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/selectTimeBtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-6dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/design_default_color_primary_dark" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_below="@+id/selectTimeBtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginTop="-92dp"
         android:background="@color/design_default_color_primary_dark" />
 
     <TextView
@@ -95,7 +100,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="254dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="301dp"
         android:gravity="center"
         android:text="HEIGHT / WEIGHT"
         android:textStyle="bold" />
@@ -173,6 +179,16 @@
         android:layout_marginBottom="115dp"
         android:text="Date"
         android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/cbNoEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/null"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="115dp"
+        android:text="No Equipment" />
 
 
 </RelativeLayout>
