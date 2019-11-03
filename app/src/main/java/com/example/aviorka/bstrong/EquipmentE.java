@@ -61,21 +61,45 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_equipment_e);
 
 
-        ImageView dumbbell = (ImageView) findViewById(R.id.dumbbellIVE);
-        ImageView bench = (ImageView) findViewById(R.id.benchIVE);
-        ImageView box = (ImageView) findViewById(R.id.boxIVE);
-        ImageView medicineBox = (ImageView) findViewById(R.id.medicinboxIVE);
-        ImageButton returnImage = (ImageButton) findViewById(R.id.returnIBE);
+        ImageView dumbbell = findViewById(R.id.dumbbellIVE);
+        ImageView bench = findViewById(R.id.benchIVE);
+        ImageView box = findViewById(R.id.boxIVE);
+        ImageView medicineBox = findViewById(R.id.medicinboxIVE);
+        ImageButton returnImage = findViewById(R.id.returnIBE);
 
         dumbbell.setOnClickListener(this);
         bench.setOnClickListener(this);
         box.setOnClickListener(this);
         medicineBox.setOnClickListener(this);
 
+        Bundle extras = getIntent().getExtras();
+        equipmentList = extras.getStringArrayList("SELECTED_EQUIPMENT");
+
         equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell"));
         equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench"));
         equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box"));
         equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall"));
+
+        for(String equip : equipmentList) {
+            switch (equip ){
+                case "box":
+                    box.setBackground(getResources().getDrawable(R.drawable.background_selected));
+                    equipmentStateMap.get(box.getId()).setSelected(true);
+                    break;
+                case "dumbbell":
+                    dumbbell.setBackground(getResources().getDrawable(R.drawable.background_selected));
+                    equipmentStateMap.get(dumbbell.getId()).setSelected(true);
+                    break;
+                case "medicine Box":
+                    medicineBox.setBackground(getResources().getDrawable(R.drawable.background_selected));
+                    equipmentStateMap.get(medicineBox.getId()).setSelected(true);
+                    break;
+                case "bench":
+                    bench.setBackground(getResources().getDrawable(R.drawable.background_selected));
+                    equipmentStateMap.get(bench.getId()).setSelected(true);
+                    break;
+            }
+        }
 
         //Select and send after click the return image
         returnImage.setOnClickListener(new View.OnClickListener() {

@@ -63,6 +63,7 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("create table exercise(exerciseId integer primary key autoincrement, " +
                 "planId integer not null, " +
                 "recurrenceId integer not null, " +
+                "startDate text not null, " +
                 "foreign key(planID) references [plan](planID)," +
                 "foreign key(recurrenceId) references recurrence(recurrenceId))");
 
