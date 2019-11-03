@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     tools:context=".MyPlane">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Tell us what equipment you have"
         android:textSize="14sp"
@@ -32,18 +33,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="139dp"
-        android:layout_marginTop="109dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
-        android:layout_toEndOf="@+id/cbNoEquipment"
         android:text="Select Equipment"
         android:textSize="10sp" />
 
+    <CheckBox
+        android:id="@+id/cbNoEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="-40dp"
+        android:text="No Equipment" />
+
     <View
+        android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="3dp"
+        android:layout_below="@+id/selectTimeBtn"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/noEquBtn"
+        android:layout_marginTop="40dp"
         android:background="@color/design_default_color_primary_dark" />
 
     <TextView
@@ -51,8 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="271dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="WORKOUTS PER WEEK"
         android:textStyle="bold" />
@@ -62,8 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="298dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="How many times a week you can practice "
         android:textStyle="italic" />
@@ -74,49 +83,40 @@
         android:layout_height="33dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="350dp"
-        android:layout_marginEnd="148dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
         android:text="Select"
         android:textSize="10sp" />
 
+    <TextView
+        android:id="@+id/tvDaysPerWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text=""
+        android:textStyle="italic" />
+
     <View
-        android:id="@+id/view"
+
         android:layout_width="wrap_content"
         android:layout_height="3dp"
         android:layout_below="@+id/selectTimeBtn"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="-7dp"
-        android:layout_marginTop="-139dp"
+        android:layout_marginTop="40dp"
         android:background="@color/design_default_color_primary_dark" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="3dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="211dp"
-        android:background="@color/design_default_color_primary_dark" />
-
-
-    <Button
-        android:id="@+id/continuenBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
-        android:text="let's start" />
 
     <TextView
-        android:id="@+id/lblMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="157dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="The best time to start is today"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/dateTv"
@@ -124,31 +124,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="115dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:minWidth="280dp"
         android:text="Date"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
-    <CheckBox
-        android:id="@+id/cbNoEquipment"
+    <Button
+        android:id="@+id/continuenBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="115dp"
-        android:text="No Equipment" />
-
-    <TextView
-        android:id="@+id/tvDaysPerWeek"
-        android:layout_width="wrap_content"
-        android:layout_height="91dp"
-        android:layout_above="@id/lblMessage"
-        android:layout_below="@+id/selectTimeBtn"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="51dp" />
-
-
-</RelativeLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="45dp"
+        android:text="let's start" />
+</LinearLayout>

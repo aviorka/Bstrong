@@ -90,7 +90,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
                     dumbbell.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(dumbbell.getId()).setSelected(true);
                     break;
-                case "medicine Box":
+                case "medicineBall":
                     medicineBox.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(medicineBox.getId()).setSelected(true);
                     break;

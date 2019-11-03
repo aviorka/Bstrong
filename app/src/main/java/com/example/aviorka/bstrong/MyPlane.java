@@ -1,22 +1,18 @@
 package com.example.aviorka.bstrong;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import java.util.Calendar;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +36,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
 
 
-    private Button selectEqu, noEqu, selectTimePerWeek, btnContinue;
+    private Button selectEqu, selectTimePerWeek, btnContinue;
     private int timePerWeek;
     private String currentDate = null;
 
@@ -56,12 +52,11 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_plane);
+        setContentView(R.layout.activity_my_plan);
         equipment= new ArrayList<>();
         db = Storage.geInstance(super.getBaseContext());
 
         selectEqu = findViewById(R.id.selectEquBtn);
-        noEqu = findViewById(R.id.noEquBtn);
 
         cbNoEquipment = findViewById(R.id.cbNoEquipment);
 
