@@ -46,6 +46,7 @@ public class Storage extends SQLiteOpenHelper {
                 "name text not null, " +
                 "weeklyDays integer not null)");
 
+
         db.execSQL("create table [plan](planId integer primary key autoincrement, " +
                 "equipmentID integer not null, " +
                 "muscleID integer not null, " +
@@ -89,6 +90,7 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("insert into muscle values(null,\"Legs\")");
         db.execSQL("insert into muscle values(null,\"ABS\")");
 
+        db.execSQL("insert into [plan] values(null,1, 1, 1, 5, 10, \"resource_image_id\")");
     }
 
     //Singleton
@@ -188,7 +190,7 @@ public class Storage extends SQLiteOpenHelper {
         cur.close();
         db.close();
         return false;
-    }
+}
 
 
 

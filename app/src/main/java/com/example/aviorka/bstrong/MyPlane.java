@@ -1,10 +1,13 @@
 package com.example.aviorka.bstrong;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import java.util.Calendar;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -153,11 +156,33 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                         Toast.makeText(getApplicationContext(), "Did you forget to mark an equipment? ", Toast.LENGTH_LONG).show();
                         return;
                     }else if (checkDaysPerWeek()) {
-                        Toast.makeText(getApplicationContext(), "Lior love girls clothes   ", Toast.LENGTH_LONG).show();
-                           // buildingPlan(equipment);
 
-                    } else {
-                        return;
+                        int pos = 0;
+                        String equipPlaceHolders = "";
+                        String[] params = new String[equipment.size()+1];
+
+                        for(String equip : equipment){
+                            if(equipPlaceHolders.length() > 0){
+                                equipPlaceHolders += ", ";
+                            }
+                            equipPlaceHolders += "?";
+                              params[pos] = equip ;
+                              pos++;
+                        }
+                        String sql = "select * from plan where equipmentID in (" + equipPlaceHolders + ") and recurrenceID = ? ";
+                        params[pos] = String.valueOf(timePerWeek) ;
+                        List<ContentValues> cvList = db.getMultiple(sql, params);
+
+                        // for each plan record insert its planId and recurrence into exercise table
+                        ContentValues insertParams = new ContentValues();
+
+                        for(ContentValues cv : cvList){
+                            insertParams.put("planId", cv.getAsInteger("id"));
+                            insertParams.put("recurrenceID", timePerWeek);
+                            insertParams.put("startDate", currentDate);
+
+                            db.insert("exercise" , insertParams);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

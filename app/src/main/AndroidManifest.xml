@@ -23,8 +23,6 @@
         <activity android:name=".JoinUs" />
         <activity android:name=".MyPlane" />
         <activity android:name=".EquipmentE" />
-        <activity android:name=".AdminConnect" />
-        <activity android:name=".ExercisePlan"></activity>
     </application>
 
 </manifest>
