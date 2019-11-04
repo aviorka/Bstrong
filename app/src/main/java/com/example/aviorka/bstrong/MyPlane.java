@@ -19,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aviorka.bstrong.fragment.SchedulePlan;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
@@ -183,6 +184,11 @@ public class MyPlane extends AppCompatActivity implements Serializable {
 
                             db.insert("exercise" , insertParams);
                         }
+
+                        // TODO replace SchedulePlan with activity
+
+                        Intent i = new Intent(MyPlane.this, SchedulePlan.class);
+                        startActivity(i);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
