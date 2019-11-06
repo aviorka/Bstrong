@@ -29,10 +29,12 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
 
         private boolean isSelected;
         private String name;
+        private int id;
 
-        public EquipmentState(boolean isSelected, String name){
+        public EquipmentState(boolean isSelected, String name, int id){
             setSelected(isSelected);
             setName(name);
+            setId(id);
         }
         public boolean isSelected() {
             return isSelected;
@@ -49,10 +51,13 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         public void setName(String name) {
             this.name = name;
         }
+
+        public int getId(){ return id;}
+        public void setId(int id){ this.id = id;}
     }
 
     private Map<Integer, EquipmentState> equipmentStateMap = new HashMap<>();
-    List<String> equipmentList = new ArrayList<>();
+    List<Integer> equipmentList = new ArrayList<>();
 
 
     @Override
@@ -73,28 +78,28 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         medicineBox.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
-        equipmentList = extras.getStringArrayList("SELECTED_EQUIPMENT");
+        equipmentList = extras.getIntegerArrayList("SELECTED_EQUIPMENT");
 
-        equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell"));
-        equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench"));
-        equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box"));
-        equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall"));
+        equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell", 1));
+        equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench", 2));
+        equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box", 3));
+        equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall", 4));
 
-        for(String equip : equipmentList) {
+        for(int equip : equipmentList) {
             switch (equip ){
-                case "box":
+                case 1:
                     box.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(box.getId()).setSelected(true);
                     break;
-                case "dumbbell":
+                case 2:
                     dumbbell.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(dumbbell.getId()).setSelected(true);
                     break;
-                case "medicineBall":
+                case 3:
                     medicineBox.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(medicineBox.getId()).setSelected(true);
                     break;
-                case "bench":
+                case 4:
                     bench.setBackground(getResources().getDrawable(R.drawable.background_selected));
                     equipmentStateMap.get(bench.getId()).setSelected(true);
                     break;
@@ -107,7 +112,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent();
                 //Pass data back
-                intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<String>) equipmentList);
+                intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
                 setResult(Activity.RESULT_OK, intent );
                 finish();
             }
@@ -125,7 +130,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             es.setSelected(true);
             toast( es.getName() +" was selected");
             view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            equipmentList.add(es.getName());
+            equipmentList.add(es.getId());
         }else {
             es.setSelected(false);
             toast( es.getName() +" was removed");

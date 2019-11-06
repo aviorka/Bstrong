@@ -36,9 +36,6 @@ import java.util.List;
 public class MyPlane extends AppCompatActivity implements Serializable {
     public static final int REQUEST_CODE_GETMESSAGE = 1014;
     String[] DAYS = {"1", "2", "3"};
-    String totalEquipment = "";
-
-
 
     private Button selectEqu, selectTimePerWeek, btnContinue;
     private int timePerWeek;
@@ -49,7 +46,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
     boolean hasEquipment;
     boolean hasOpenedEquipActivity;
 
-    private List<String> equipment ;
+    private List<Integer> equipment ;
     private Storage db;
 
 
@@ -162,12 +159,12 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                         String equipPlaceHolders = "";
                         String[] params = new String[equipment.size()+1];
 
-                        for(String equip : equipment){
+                        for(Integer equip : equipment){
                             if(equipPlaceHolders.length() > 0){
                                 equipPlaceHolders += ", ";
                             }
                             equipPlaceHolders += "?";
-                              params[pos] = equip ;
+                              params[pos] = String.valueOf(equip) ;
                               pos++;
                         }
                         String sql = "select * from plan where equipmentID in (" + equipPlaceHolders + ") and recurrenceID = ? ";
@@ -185,10 +182,8 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                             db.insert("exercise" , insertParams);
                         }
 
-                        // TODO replace SchedulePlan with activity
-
-                        Intent i = new Intent(MyPlane.this, SchedulePlan.class);
-                        startActivity(i);
+                        Intent intent = SchedulePlan.makeIntent(MyPlane.this);
+                        startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -248,7 +243,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
             if(extras == null) {
                 equipArr= null;
             } else {
-                equipment= extras.getStringArrayList("SELECTED_EQUIPMENT");
+                equipment= extras.getIntegerArrayList("SELECTED_EQUIPMENT");
             }
             if(equipment.size() == 0)
                 hasEquipment = false;
@@ -257,16 +252,6 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                 if(cbNoEquipment.isChecked()){
                     cbNoEquipment.setChecked(false);
                 }
-            }
-
-
-
-            switch (requestCode){
-                case REQUEST_CODE_GETMESSAGE:
-                    if(resultCode == Activity.RESULT_OK){
-                        totalEquipment = data.getStringExtra("returnData");
-                        equipment = new  ArrayList<String>(Arrays.asList(totalEquipment.split(",")));
-                    }
             }
         } catch (Exception e) {
             e.printStackTrace();
