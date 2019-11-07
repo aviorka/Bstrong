@@ -1,13 +1,11 @@
 package com.example.aviorka.bstrong;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import java.util.Calendar;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +17,12 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aviorka.bstrong.fragment.SchedulePlan;
+import com.example.aviorka.bstrong.fragment.ExercisePlan;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -182,7 +179,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                             db.insert("exercise" , insertParams);
                         }
 
-                        Intent intent = SchedulePlan.makeIntent(MyPlane.this);
+                        Intent intent = ExercisePlan.makeIntent(MyPlane.this);
                         startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
                     }
                 } catch (Exception e) {
