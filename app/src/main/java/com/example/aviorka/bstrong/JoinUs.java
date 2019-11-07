@@ -8,7 +8,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.aviorka.bstrong.persistence.Storage;
 
@@ -79,7 +78,7 @@ public class JoinUs extends AppCompatActivity {
         insertTrainee();
 
         //Start MY PLANE activity
-       Intent intent = new Intent(JoinUs.this, MyPlane.class);
+       Intent intent = new Intent(JoinUs.this, MyPlan.class);
          startActivity(intent);
     }
 

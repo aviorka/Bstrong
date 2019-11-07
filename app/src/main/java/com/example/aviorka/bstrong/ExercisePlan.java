@@ -1,15 +1,12 @@
-package com.example.aviorka.bstrong.fragment;
+package com.example.aviorka.bstrong;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import com.example.aviorka.bstrong.EquipmentE;
-import com.example.aviorka.bstrong.R;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.util.List;
@@ -33,17 +30,21 @@ public class ExercisePlan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_plan);
+
+        db = Storage.geInstance(getBaseContext());
+        showData();
     }
+
 
     /**
      * Retrieve data depicting a single exercise for a week
      * according to the user selected frequency.
      */
     private void showData(){
-
-        List<ContentValues> resultSet = db.getMultiple("select * from exercise", new String[]{});
+//TODO Add correct select statement
+        List<ContentValues> resultSet = db.getMultiple("select * from 'plan'", new String[]{});
         for(ContentValues muscle : resultSet){
-            setExercise(muscle.getAsInteger("muscleId"), muscle.getAsInteger("recurrenceId"));
+            setExercise(muscle.getAsInteger("muscleid"), muscle.getAsInteger("recurrenceId"));
         }
     }
     /**
@@ -77,7 +78,7 @@ public class ExercisePlan extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Context context){
-        return new Intent(context, EquipmentE.class);
+        return new Intent(context, ExercisePlan.class);
     }
     
 }

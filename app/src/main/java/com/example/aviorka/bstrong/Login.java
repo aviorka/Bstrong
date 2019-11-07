@@ -1,7 +1,6 @@
 package com.example.aviorka.bstrong;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -61,8 +60,10 @@ public class Login extends AppCompatActivity {
         //Check match between user name and pass
         if ((helper.checkMatcForUser(email, pass))) {
             //Start MY PLANE activity
-            Intent intent = new Intent(Login.this, MyPlane.class);
+            Intent intent = new Intent(Login.this, MyPlan.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
             startActivity(intent);
+            finish();
         } else {
             Toast.makeText(getApplicationContext(), "Login Failed. The email or password you entered is incorrect", Toast.LENGTH_LONG).show();
             textInputEmail.setError("Email or Password don't match!");
