@@ -180,7 +180,9 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                         }
 
                         Intent intent = ExercisePlan.makeIntent(MyPlane.this);
-                        startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                        startActivity(intent);
+                        finish();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

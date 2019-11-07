@@ -77,7 +77,7 @@ public class ExercisePlan extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Context context){
-        return new Intent(context, EquipmentE.class);
+        return new Intent(context, ExercisePlan.class);
     }
     
 }
