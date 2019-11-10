@@ -29,12 +29,12 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
 
         private boolean isSelected;
         private String name;
-        private int id;
 
-        public EquipmentState(boolean isSelected, String name, int id){
+
+        public EquipmentState(boolean isSelected, String name){
             setSelected(isSelected);
             setName(name);
-            setId(id);
+
         }
         public boolean isSelected() {
             return isSelected;
@@ -52,8 +52,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             this.name = name;
         }
 
-        public int getId(){ return id;}
-        public void setId(int id){ this.id = id;}
+
     }
 
     private Map<Integer, EquipmentState> equipmentStateMap = new HashMap<>();
@@ -80,30 +79,14 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         Bundle extras = getIntent().getExtras();
         equipmentList = extras.getIntegerArrayList("SELECTED_EQUIPMENT");
 
-        equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell", 1));
-        equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench", 2));
-        equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box", 3));
-        equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall", 4));
+        equipmentStateMap.put(dumbbell.getId(), new EquipmentState(false, "dumbbell"));
+        equipmentStateMap.put(bench.getId(), new EquipmentState(false, "bench"));
+        equipmentStateMap.put(box.getId(), new EquipmentState(false, "box"));
+        equipmentStateMap.put(medicineBox.getId(), new EquipmentState(false, "medicineBall"));
 
         for(int equip : equipmentList) {
-            switch (equip ){
-                case 1:
-                    box.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(box.getId()).setSelected(true);
-                    break;
-                case 2:
-                    dumbbell.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(dumbbell.getId()).setSelected(true);
-                    break;
-                case 3:
-                    medicineBox.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(medicineBox.getId()).setSelected(true);
-                    break;
-                case 4:
-                    bench.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(bench.getId()).setSelected(true);
-                    break;
-            }
+            equipmentStateMap.get(equip).setSelected(true);
+            findViewById(equip).setBackground(getResources().getDrawable(R.drawable.background_selected));
         }
 
         //Select and send after click the return image
@@ -130,12 +113,12 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             es.setSelected(true);
             toast( es.getName() +" was selected");
             view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            equipmentList.add(es.getId());
+            equipmentList.add(view.getId());
         }else {
             es.setSelected(false);
             toast( es.getName() +" was removed");
             view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
-            equipmentList.remove(es.getName());
+            equipmentList.remove(Integer.valueOf(view.getId()));
         }
     }
 
