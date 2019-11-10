@@ -31,7 +31,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
     private Storage db;
 
 
-    //TODO add view id as a field 
+    //TODO add view id as a field
     public class EquipmentState implements Serializable {
 
         private boolean isSelected;
@@ -100,7 +100,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         // TODO Use EquipmentState view id
         for(EquipmentState equip : equipmentList) {
             equipmentStateMap.get(equip.getDbId()).setSelected(true);
-            findViewById(equip).setBackground(getResources().getDrawable(R.drawable.background_selected));
+            //TODO fix findViewById(equip).setBackground(getResources().getDrawable(R.drawable.background_selected));
         }
 
         //Select and send after click the return image
@@ -109,7 +109,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent();
                 //Pass data back
-                intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
+                //TODO fix intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
                 setResult(Activity.RESULT_OK, intent );
                 finish();
             }
@@ -127,7 +127,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             es.setSelected(true);
             toast( es.getName() +" was selected");
             view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            equipmentList.add(view.getId());
+            // TODO fix equipmentList.add(view.getId());
         }else {
             es.setSelected(false);
             toast( es.getName() +" was removed");
