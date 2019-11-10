@@ -48,7 +48,7 @@ public class Storage extends SQLiteOpenHelper {
 
 
         db.execSQL("create table [plan](planId integer primary key autoincrement, " +
-                "equipmentID integer not null, " +
+                "equipmentId integer not null, " +
                 "muscleID integer not null, " +
                 "recurrenceId integer not null, " +
                 "sessions integer not null, " +

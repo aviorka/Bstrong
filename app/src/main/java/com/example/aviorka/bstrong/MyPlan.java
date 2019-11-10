@@ -17,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aviorka.bstrong.fragment.ExercisePlan;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
@@ -26,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* MyPlane
+* MyPlan
 * This class collect the information from user
 *
 */
-public class MyPlane extends AppCompatActivity implements Serializable {
+public class MyPlan extends AppCompatActivity implements Serializable {
     public static final int REQUEST_CODE_GETMESSAGE = 1014;
     String[] DAYS = {"1", "2", "3"};
 
@@ -77,7 +76,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
         selectTimePerWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MyPlane.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyPlan.this);
 
                 builder.setTitle("Select number of days to exercise ");
                 builder.setItems(DAYS, new DialogInterface.OnClickListener() {
@@ -132,7 +131,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
             public void onClick(View view) {
                 hasOpenedEquipActivity = true;
                 //Launch the equipmentE activity
-               Intent intent = EquipmentE.makeIntent(MyPlane.this);
+               Intent intent = EquipmentE.makeIntent(MyPlan.this);
                 intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList)equipment);
                startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
             }
@@ -179,7 +178,7 @@ public class MyPlane extends AppCompatActivity implements Serializable {
                             db.insert("exercise" , insertParams);
                         }
 
-                        Intent intent = ExercisePlan.makeIntent(MyPlane.this);
+                        Intent intent = ExercisePlan.makeIntent(MyPlan.this);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                         startActivity(intent);
                         finish();
