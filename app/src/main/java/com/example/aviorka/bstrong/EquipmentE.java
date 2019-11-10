@@ -1,6 +1,7 @@
 package com.example.aviorka.bstrong;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.aviorka.bstrong.persistence.Storage;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,17 +28,20 @@ import java.util.Map;
  */
 public class EquipmentE extends AppCompatActivity implements View.OnClickListener {
 
+    private Storage db;
 
-    public class EquipmentState{
+
+    //TODO add view id as a field
+    public class EquipmentState implements Serializable {
 
         private boolean isSelected;
         private String name;
-        private int id;
+        private int dbId;
 
-        public EquipmentState(boolean isSelected, String name, int id){
+        public EquipmentState(boolean isSelected, String name, int dbId){
             setSelected(isSelected);
             setName(name);
-            setId(id);
+
         }
         public boolean isSelected() {
             return isSelected;
@@ -52,12 +59,12 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             this.name = name;
         }
 
-        public int getId(){ return id;}
-        public void setId(int id){ this.id = id;}
+        public int getDbId(){return this.dbId;}
+        public void setDbId(int dbId){this.dbId = dbId;}
     }
 
     private Map<Integer, EquipmentState> equipmentStateMap = new HashMap<>();
-    List<Integer> equipmentList = new ArrayList<>();
+    List<EquipmentState> equipmentList = new ArrayList<>();
 
 
     @Override
@@ -78,32 +85,22 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         medicineBox.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
-        equipmentList = extras.getIntegerArrayList("SELECTED_EQUIPMENT");
+        equipmentList = (ArrayList<EquipmentState>)extras.getSerializable("SELECTED_EQUIPMENT");
 
-        equipmentStateMap.put(R.id.dumbbellIVE, new EquipmentState(false, "dumbbell", 1));
-        equipmentStateMap.put(R.id.benchIVE, new EquipmentState(false, "bench", 2));
-        equipmentStateMap.put(R.id.boxIVE, new EquipmentState(false, "box", 3));
-        equipmentStateMap.put(R.id.medicinboxIVE, new EquipmentState(false, "medicineBall", 4));
+//        String sql = "select * from equipment";
+//        String params[] = new String[]{};
+//        List<ContentValues> cvList = db.getMultiple(sql, params);
 
-        for(int equip : equipmentList) {
-            switch (equip ){
-                case 1:
-                    box.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(box.getId()).setSelected(true);
-                    break;
-                case 2:
-                    dumbbell.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(dumbbell.getId()).setSelected(true);
-                    break;
-                case 3:
-                    medicineBox.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(medicineBox.getId()).setSelected(true);
-                    break;
-                case 4:
-                    bench.setBackground(getResources().getDrawable(R.drawable.background_selected));
-                    equipmentStateMap.get(bench.getId()).setSelected(true);
-                    break;
-            }
+        //TODO add view id to the constructor
+        equipmentStateMap.put(dumbbell.getId(), new EquipmentState(false, "dumbbell", 1));
+        equipmentStateMap.put(bench.getId(), new EquipmentState(false, "bench", 2));
+        equipmentStateMap.put(box.getId(), new EquipmentState(false, "box", 3));
+        equipmentStateMap.put(medicineBox.getId(), new EquipmentState(false, "medicineBall", 4));
+
+        // TODO Use EquipmentState view id
+        for(EquipmentState equip : equipmentList) {
+            equipmentStateMap.get(equip.getDbId()).setSelected(true);
+            //TODO fix findViewById(equip).setBackground(getResources().getDrawable(R.drawable.background_selected));
         }
 
         //Select and send after click the return image
@@ -112,7 +109,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent();
                 //Pass data back
-                intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
+                //TODO fix intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
                 setResult(Activity.RESULT_OK, intent );
                 finish();
             }
@@ -130,12 +127,12 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             es.setSelected(true);
             toast( es.getName() +" was selected");
             view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            equipmentList.add(es.getId());
+            // TODO fix equipmentList.add(view.getId());
         }else {
             es.setSelected(false);
             toast( es.getName() +" was removed");
             view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
-            equipmentList.remove(es.getName());
+            equipmentList.remove(Integer.valueOf(view.getId()));
         }
     }
 

@@ -142,16 +142,13 @@ public class Storage extends SQLiteOpenHelper {
         while(cur.moveToNext()){
             for(int col = 0; col < columnNames.length; col++){
                 switch(cur.getType(col)){
-                    case 1:
+                    case Cursor.FIELD_TYPE_INTEGER:
                         rs.put(columnNames[col], cur.getInt(col));
                         break;
-                    case 2:
+                    case Cursor.FIELD_TYPE_STRING:
                         rs.put(columnNames[col], cur.getString(col));
                         break;
-                    case 3:
-                        rs.put(columnNames[col], cur.getString(col));
-                        break;
-                    case 4:
+                    case Cursor.FIELD_TYPE_FLOAT:
                         rs.put(columnNames[col], cur.getFloat(col));
                         break;
                     case 5: //bool, datetime
