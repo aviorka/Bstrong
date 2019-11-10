@@ -56,7 +56,6 @@ public class Login extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //TODO Check if user name & password really in database
         //Check match between user name and pass
         if ((helper.checkMatcForUser(email, pass))) {
             //Start MY PLANE activity
