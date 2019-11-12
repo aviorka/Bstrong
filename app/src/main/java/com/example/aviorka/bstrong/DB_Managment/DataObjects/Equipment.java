@@ -1,24 +1,36 @@
 package com.example.aviorka.bstrong.DB_Managment.DataObjects;
 
-public class Equipment {
-    private long id;
-    private String equipmentName;
+import java.io.Serializable;
 
-    public long getId() {
-        return id;
+public class Equipment implements Serializable {
+    private boolean isSelected;
+    private String name;
+    private int dbId;
+    private int viewId;
+
+    public Equipment(boolean isSelected, String name, int dbId, int viewId){
+        setSelected(isSelected);
+        setName(name);
+        setDbId(dbId);
+        setViewId(viewId);
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getName() { return name; }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEquipmentName() {
-        return equipmentName;
-    }
+    public int getDbId(){return this.dbId;}
+    public void setDbId(int dbId){this.dbId = dbId;}
 
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
-    }
+    public int getViewId(){ return this.viewId;}
+    public void setViewId(int viewId){this.viewId = viewId;}
 
 
 }
