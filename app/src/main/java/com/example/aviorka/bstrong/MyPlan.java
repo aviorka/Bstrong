@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aviorka.bstrong.DB_Managment.DataObjects.Equipment;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
@@ -25,10 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* MyPlan
-* This class collect the information from user
-*
-*/
+ * MyPlan
+ * This class collect the information from user
+ *
+ */
 public class MyPlan extends AppCompatActivity implements Serializable {
     public static final int REQUEST_CODE_GETMESSAGE = 1014;
     String[] DAYS = {"1", "2", "3"};
@@ -42,7 +43,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
     boolean hasEquipment;
     boolean hasOpenedEquipActivity;
 
-    private List<Integer> equipment ;
+    private List<Equipment> equipment ;
     private Storage db;
 
 
@@ -131,9 +132,9 @@ public class MyPlan extends AppCompatActivity implements Serializable {
             public void onClick(View view) {
                 hasOpenedEquipActivity = true;
                 //Launch the equipmentE activity
-               Intent intent = EquipmentE.makeIntent(MyPlan.this);
+                Intent intent = EquipmentE.makeIntent(MyPlan.this);
                 intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList)equipment);
-               startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
+                startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
             }
         });
 
@@ -155,13 +156,13 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         String equipPlaceHolders = "";
                         String[] params = new String[equipment.size()+1];
 
-                        for(Integer equip : equipment){
+                        for(Equipment equip : equipment){
                             if(equipPlaceHolders.length() > 0){
                                 equipPlaceHolders += ", ";
                             }
                             equipPlaceHolders += "?";
-                              params[pos] = String.valueOf(equip) ;
-                              pos++;
+                            params[pos] = String.valueOf(equip.getDbId()) ;
+                            pos++;
                         }
                         String sql = "select * from plan where equipmentID in (" + equipPlaceHolders + ") and recurrenceID = ? ";
                         params[pos] = String.valueOf(timePerWeek) ;
@@ -241,7 +242,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
             if(extras == null) {
                 equipArr= null;
             } else {
-                equipment= extras.getIntegerArrayList("SELECTED_EQUIPMENT");
+                equipment= (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
             }
             if(equipment.size() == 0)
                 hasEquipment = false;

@@ -41,10 +41,15 @@ public class ExercisePlan extends AppCompatActivity {
      * according to the user selected frequency.
      */
     private void showData(){
-//TODO Add correct select statement
+        // display trainee full name
+        ContentValues cv = db.getSingle("select * from 'plan'", new String[]{});
+        TextView tvFullName = findViewById(R.id.tvFullName);
+        tvFullName.setText(cv.getAsString("fullName"));
+
+        // populate exercises
         List<ContentValues> resultSet = db.getMultiple("select * from 'plan'", new String[]{});
         for(ContentValues muscle : resultSet){
-            setExercise(muscle.getAsInteger("muscleid"), muscle.getAsInteger("recurrenceId"));
+            setExercise(muscle.getAsInteger("muscleID"), muscle.getAsInteger("recurrenceId"));
         }
     }
     /**
@@ -80,7 +85,5 @@ public class ExercisePlan extends AppCompatActivity {
     public static Intent makeIntent(Context context){
         return new Intent(context, ExercisePlan.class);
     }
-    
+
 }
-
-

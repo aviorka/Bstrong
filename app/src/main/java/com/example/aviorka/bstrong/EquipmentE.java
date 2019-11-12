@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.aviorka.bstrong.DB_Managment.DataObjects.Equipment;
 import com.example.aviorka.bstrong.persistence.Storage;
 
 import java.io.Serializable;
@@ -29,42 +30,8 @@ import java.util.Map;
 public class EquipmentE extends AppCompatActivity implements View.OnClickListener {
 
     private Storage db;
-
-
-    //TODO add view id as a field
-    public class EquipmentState implements Serializable {
-
-        private boolean isSelected;
-        private String name;
-        private int dbId;
-
-        public EquipmentState(boolean isSelected, String name, int dbId){
-            setSelected(isSelected);
-            setName(name);
-
-        }
-        public boolean isSelected() {
-            return isSelected;
-        }
-
-        public void setSelected(boolean selected) {
-            isSelected = selected;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getDbId(){return this.dbId;}
-        public void setDbId(int dbId){this.dbId = dbId;}
-    }
-
-    private Map<Integer, EquipmentState> equipmentStateMap = new HashMap<>();
-    List<EquipmentState> equipmentList = new ArrayList<>();
+    private Map<Integer, Equipment> EquipmentMap = new HashMap<>();
+    List<Equipment> equipmentList = new ArrayList<>();
 
 
     @Override
@@ -85,22 +52,22 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         medicineBox.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
-        equipmentList = (ArrayList<EquipmentState>)extras.getSerializable("SELECTED_EQUIPMENT");
+        equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
 
 //        String sql = "select * from equipment";
 //        String params[] = new String[]{};
 //        List<ContentValues> cvList = db.getMultiple(sql, params);
 
-        //TODO add view id to the constructor
-        equipmentStateMap.put(dumbbell.getId(), new EquipmentState(false, "dumbbell", 1));
-        equipmentStateMap.put(bench.getId(), new EquipmentState(false, "bench", 2));
-        equipmentStateMap.put(box.getId(), new EquipmentState(false, "box", 3));
-        equipmentStateMap.put(medicineBox.getId(), new EquipmentState(false, "medicineBall", 4));
+        //TODO add view id to the constructor - DONE
+        EquipmentMap.put(dumbbell.getId(), new Equipment(false, "dumbbell", 1, dumbbell.getId()));
+        EquipmentMap.put(bench.getId(), new Equipment(false, "bench", 2, bench.getId()));
+        EquipmentMap.put(box.getId(), new Equipment(false, "box", 3, box.getId()));
+        EquipmentMap.put(medicineBox.getId(), new Equipment(false, "medicineBall", 4, medicineBox.getId()));
 
-        // TODO Use EquipmentState view id
-        for(EquipmentState equip : equipmentList) {
-            equipmentStateMap.get(equip.getDbId()).setSelected(true);
-            //TODO fix findViewById(equip).setBackground(getResources().getDrawable(R.drawable.background_selected));
+        // TODO Use Equipment view id - DONE
+        for(Equipment equip : equipmentList) {
+            EquipmentMap.get(equip.getDbId()).setSelected(true);
+            findViewById(equip.getViewId()).setBackground(getResources().getDrawable(R.drawable.background_selected));
         }
 
         //Select and send after click the return image
@@ -109,7 +76,8 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent();
                 //Pass data back
-                //TODO fix intent.putIntegerArrayListExtra("SELECTED_EQUIPMENT",(ArrayList<Integer>) equipmentList);
+                //TODO fix change type of array - DONE
+                intent.putExtra("SELECTED_EQUIPMENT",(ArrayList<Equipment>) equipmentList);
                 setResult(Activity.RESULT_OK, intent );
                 finish();
             }
@@ -121,13 +89,13 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        EquipmentState es = equipmentStateMap.get(view.getId());
+        Equipment es = EquipmentMap.get(view.getId());
 
         if(!es.isSelected()){   //If equipment was not selected select it
             es.setSelected(true);
             toast( es.getName() +" was selected");
             view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            // TODO fix equipmentList.add(view.getId());
+            equipmentList.add(es);    // TODO fix  - add EquipmentSatte instead if its id - DONE
         }else {
             es.setSelected(false);
             toast( es.getName() +" was removed");

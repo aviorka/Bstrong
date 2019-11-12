@@ -6,8 +6,8 @@
     android:columnCount="1" >
 
     <TextView
+        android:id="@+id/tvFullName"
         android:layout_gravity="center_horizontal"
-        android:text="Lior Tamir "
         android:textSize="32dip" />
 
     <LinearLayout
