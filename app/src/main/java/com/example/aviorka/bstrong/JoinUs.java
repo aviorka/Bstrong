@@ -26,7 +26,7 @@ public class JoinUs extends AppCompatActivity {
                     ".{4,}" +               //at least 4 characters
                     "$");
 
-    //The database helper.
+    //The database db.
 
     private EditText textInputEmail;
     private EditText textInputFullname;
@@ -75,15 +75,16 @@ public class JoinUs extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        insertTrainee();
+        ContentValues trainee = insertTrainee();
 
         //Start MY PLANE activity
        Intent intent = new Intent(JoinUs.this, MyPlan.class);
-         startActivity(intent);
+       intent.putExtra("TRAINEE", trainee);
+       startActivity(intent);
     }
 
     //Inserting Trainee
-    private void insertTrainee() {
+    private ContentValues insertTrainee() {
         ContentValues cv = new ContentValues();
         cv.put("fullName", textInputFullname.getText().toString().trim());
         cv.put("email", textInputEmail.getText().toString().trim());
@@ -92,9 +93,10 @@ public class JoinUs extends AppCompatActivity {
         cv.put("weight", textInputWeight.getText().toString().trim());
 
 
-        db.insert("trainee", cv);
+        long traineeId = db.insert("trainee", cv);
 
-
+        cv.put("traineeId", traineeId);
+        return cv;
     }
 
     //Validate Email

@@ -1,5 +1,6 @@
 package com.example.aviorka.bstrong;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.example.aviorka.bstrong.persistence.Storage;
  */
 public class Login extends AppCompatActivity {
 
-    Storage helper = Storage.geInstance(this);
+    Storage db = Storage.geInstance(this);
     private EditText textInputPassword;
     private EditText textInputEmail;
 
@@ -47,19 +48,12 @@ public class Login extends AppCompatActivity {
     public void CheckDetails(View v) {
         String email = textInputEmail.getText().toString().trim();
         String pass = textInputPassword.getText().toString().trim();
-
-        try {
-            if ((email.equals("admin")) && (pass.equals("admin"))) {
-               // Intent intent = new Intent(Login.this, AdminConnection.class);
-               // startActivity(intent);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ContentValues trainee = new ContentValues();
         //Check match between user name and pass
-        if ((helper.checkMatcForUser(email, pass))) {
+        if ((db.checkMatchForUser(email, pass, trainee))) {
             //Start MY PLANE activity
-            Intent intent = new Intent(Login.this, MyPlan.class);
+            Intent intent = new Intent(Login.this, ExercisePlan.class);
+            intent.putExtra("TRAINEE", trainee);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
             startActivity(intent);
             finish();

@@ -45,6 +45,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
     private List<Equipment> equipment ;
     private Storage db;
+    private ContentValues trainee;
 
 
     @Override
@@ -61,7 +62,9 @@ public class MyPlan extends AppCompatActivity implements Serializable {
         selectTimePerWeek = findViewById(R.id.selectTimeBtn);
         btnContinue = findViewById(R.id.continuenBtn);
 
-
+        // get ContentValues object containing trainee data from JoinUs
+        Bundle extras = getIntent().getExtras();
+        trainee = (ContentValues)extras.get("TRAINEE");
 
         /**
          * Display current date
@@ -168,11 +171,14 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         params[pos] = String.valueOf(timePerWeek) ;
                         List<ContentValues> cvList = db.getMultiple(sql, params);
 
+                        String userSql = "select traineeId from trainee";
                         // for each plan record insert its planId and recurrence into exercise table
                         ContentValues insertParams = new ContentValues();
 
                         for(ContentValues cv : cvList){
                             insertParams.put("planId", cv.getAsInteger("id"));
+                            insertParams.put("traineeId", trainee.getAsInteger("traineeId"));
+                            insertParams.put("startDate", currentDate);
                             insertParams.put("recurrenceID", timePerWeek);
                             insertParams.put("startDate", currentDate);
 
@@ -180,6 +186,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         }
 
                         Intent intent = ExercisePlan.makeIntent(MyPlan.this);
+                        intent.putExtra("TRAINEE", trainee);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                         startActivity(intent);
                         finish();

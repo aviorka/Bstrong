@@ -24,12 +24,17 @@ public class ExercisePlan extends AppCompatActivity {
     private static final int RECU_2 =2;
     private static final int RECU_3 =3;
 
+    private ContentValues trainee;
     private Storage db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_plan);
+
+        // get ContentValues object containing trainee data from JoinUs
+        Bundle extras = getIntent().getExtras();
+        trainee = (ContentValues)extras.get("TRAINEE");
 
         db = Storage.geInstance(getBaseContext());
         showData();
@@ -42,9 +47,8 @@ public class ExercisePlan extends AppCompatActivity {
      */
     private void showData(){
         // display trainee full name
-        ContentValues cv = db.getSingle("select * from 'plan'", new String[]{});
         TextView tvFullName = findViewById(R.id.tvFullName);
-        tvFullName.setText(cv.getAsString("fullName"));
+        tvFullName.setText(trainee.getAsString("fullName"));
 
         // populate exercises
         List<ContentValues> resultSet = db.getMultiple("select * from 'plan'", new String[]{});

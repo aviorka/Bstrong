@@ -37,6 +37,7 @@ public class Storage extends SQLiteOpenHelper {
                 "email text not null, " +
                 "password text not null, " +
                 "age integer not null, " +
+                "height integer not null, " +
                 "weight integer not null)");
 
         db.execSQL("create table equipment(equipmentId integer primary key," +
@@ -63,9 +64,11 @@ public class Storage extends SQLiteOpenHelper {
 
         db.execSQL("create table exercise(exerciseId integer primary key autoincrement, " +
                 "planId integer not null, " +
+                "traineeId integer not null, " +
                 "recurrenceId integer not null, " +
                 "startDate text not null, " +
                 "foreign key(planID) references [plan](planID)," +
+                "foreign key(traineeId) references [trainee](traineeId)," +
                 "foreign key(recurrenceId) references recurrence(recurrenceId))");
 
         //DML - Data Manipulation language
@@ -171,7 +174,7 @@ public class Storage extends SQLiteOpenHelper {
      * @param pass
      * @return
      */
-    public boolean checkMatcForUser(String email,String pass){
+    public boolean checkMatchForUser(String email, String pass, ContentValues trainee){
 
         String sql = "select * from trainee where email = ? and password = ? ";
         String params[] = {email, pass};
@@ -179,6 +182,13 @@ public class Storage extends SQLiteOpenHelper {
         Cursor cur = db.rawQuery(sql, params);
 
         while(cur.moveToNext()) {
+            trainee.put("traineeId", cur.getInt(1));
+            trainee.put("fullName", cur.getInt(1));
+            trainee.put("email", cur.getInt(1));
+            trainee.put("password", cur.getInt(1));
+            trainee.put("age", cur.getInt(1));
+            trainee.put("height", cur.getInt(1));
+            trainee.put("weight", cur.getInt(1));
             cur.close();
             db.close();
             return true;
