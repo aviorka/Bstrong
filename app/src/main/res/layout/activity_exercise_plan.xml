@@ -549,7 +549,7 @@
             android:layout_gravity="start"
             android:height="200dp"
             android:background="@mipmap/ic_launcher"
-            android:text="Image :)" />
+            android:text="" />
 
 
     </LinearLayout>

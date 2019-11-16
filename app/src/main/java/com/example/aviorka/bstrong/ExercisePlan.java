@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.graphics.drawable.Drawable;
 
 import com.example.aviorka.bstrong.persistence.Storage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExercisePlan extends AppCompatActivity {
@@ -70,35 +70,46 @@ public class ExercisePlan extends AppCompatActivity {
         switch(recurrence){
             case RECU_1:
                 tv = findViewById(idMapping[muscle-1][1]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 break;
             case RECU_2:
                 tv = findViewById(idMapping[muscle-1][1]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 tv = findViewById(idMapping[muscle-1][3]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 break;
             case RECU_3:
                 tv = findViewById(idMapping[muscle-1][0]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 tv = findViewById(idMapping[muscle-1][2]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 tv = findViewById(idMapping[muscle-1][4]);
-                tv.setText("X");
+                setUpExercise(tv, planId);
                 break;
         }
 
-        if(tv == null) return;
+    }
 
+    private void setUpExercise(TextView tv, final int planId){
+        tv.setText("X");
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Launch
-                db.getSingle("Select description , imageResourceId from 'plan' where plnId = ? ", new String[] {String.valueOf(planId)});
+                ContentValues cv;
+                cv = db.getSingle("Select description , imageResourceId from 'plan' where planId = ? ", new String[] {String.valueOf(planId)});
 
+                TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
+                tvExerciseDetails.setText(cv.getAsString("description"));
+
+                TextView tvDetailImage = findViewById(R.id.tvDetailImage);
+                String imageResourceId = cv.getAsString("imageResourceId");
+                int imageResource = getResources().getIdentifier(imageResourceId, "drawable", getPackageName());
+                //Drawable image = getResources().getDrawable(imageResource);
+                tvDetailImage.setBackgroundResource(imageResource);
             }
         });
     }
+
 
     public static Intent makeIntent(Context context){
         return new Intent(context, ExercisePlan.class);
