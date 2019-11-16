@@ -90,21 +90,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center" />
         <TextView
             android:id="@+id/tvLegs1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvLegs2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvLegs3"
@@ -112,21 +115,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvLegs4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvLegs5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <!-- back -->
         <TextView
             android:id="@+id/tvLegs6"
@@ -134,7 +140,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
     </LinearLayout>
     <!-- Back -->
     <LinearLayout
@@ -157,21 +164,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBack1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBack2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvBack3"
@@ -179,21 +189,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBack4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBack5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <!-- back -->
         <TextView
             android:id="@+id/tvBack6"
@@ -201,7 +214,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center" />
     </LinearLayout>
     <!-- Chest -->
     <LinearLayout
@@ -224,45 +238,57 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvChest1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvChest2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/border"   />         android:text="" />
+            android:background="@drawable/border"
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvChest3"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/border"            android:text="" />
+            android:background="@drawable/border"
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvChest4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/border"            android:text="" />
+            android:background="@drawable/border"
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvChest5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/border"            android:text="" />
+            android:background="@drawable/border"
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvChest6"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/border"            android:text="" />
+            android:background="@drawable/border"
+            android:text=""
+            android:textAlignment="center"/>
     </LinearLayout>
 
     <!-- Biceps Flexion -->
@@ -286,21 +312,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBiceps1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBiceps2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvBiceps3"
@@ -308,21 +337,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBiceps4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvBiceps5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <!-- back -->
         <TextView
             android:id="@+id/tvBiceps6"
@@ -330,7 +362,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
     </LinearLayout>
     <!--Triceps-->
     <LinearLayout
@@ -353,21 +386,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvTriceps1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvTriceps2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvTriceps3"
@@ -375,21 +411,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvTriceps4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvTriceps5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <!-- back -->
         <TextView
             android:id="@+id/tvTriceps6"
@@ -397,7 +436,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
     </LinearLayout>
     <!-- Shoulders -->
     <LinearLayout
@@ -420,21 +460,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvShoulders1"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvShoulders2"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvShoulders3"
@@ -442,21 +485,24 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvShoulders4"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvShoulders5"
             android:layout_width="49dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
         <!-- back -->
         <TextView
             android:id="@+id/tvShoulders6"
@@ -464,7 +510,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/border"
-            android:text="" />
+            android:text=""
+            android:textAlignment="center"/>
     </LinearLayout>
 
     <LinearLayout

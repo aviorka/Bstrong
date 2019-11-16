@@ -121,7 +121,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                     equipment.clear();
                     Toast.makeText(getApplicationContext(), "Equipment removed ", Toast.LENGTH_LONG).show();
                 }else
-                    hasEquipment = isChecked;
+                    hasEquipment = !isChecked;
             }
         });
 

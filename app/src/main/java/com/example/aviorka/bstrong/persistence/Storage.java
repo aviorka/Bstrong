@@ -94,8 +94,6 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("insert into muscle values(null,\"Biceps\")");
         db.execSQL("insert into muscle values(null,\"Triceps\")");
         db.execSQL("insert into muscle values(null,\"Shoulders\")");
-        db.execSQL("insert into muscle values(null,\"Legs\")");
-        db.execSQL("insert into muscle values(null,\"ABS\")");
 
         //
         db.execSQL("insert into [plan] values(null,1, 1, 1, 3, 8,\"Stand with your feet slightly wider than shoulders width apart. Hold a dumbbell in front of your chest with both your hands. Perform a squat until your hams touch your calves. Keep your back straight, and head and chest up.\", \"resource_image_id\")");
@@ -115,9 +113,9 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("insert into [plan] values(null,4, 5, 1, 1, 9,\"Step up on the box and then step down , each time starting with a different leg \", \"resource_image_id\")");
         db.execSQL("insert into [plan] values(null,4, 5, 2, 2, 7,\"jump over the box forth and back \", \"resource_image_id\")");
         db.execSQL("insert into [plan] values(null,4, 6, 3, 3, 10,\"Sit down on the box and then stand up \", \"resource_image_id\")");
-        db.execSQL("insert into [plan] values(null,5, 7, 1, 3, 10,\"Stand as tall as you can with your feet spread slightly wider than shoulder-width apart. Hold your arms straight out in front of your body at shoulder level, so that your arms parallel to the floor.\", \"resource_image_id\")");
-        db.execSQL("insert into [plan] values(null,5, 8, 2, 3, 10,\"Assume a push-up position, but place your hands placed on a raised surface—such as a box, bench, ottoman or one of the steps of your stairs—instead of the floor. Your body should form a straight line from your ankles to your head\", \"resource_image_id\")");
-        db.execSQL("insert into [plan] values(null,5, 8, 3, 3, 10,\"Lie on your back on the floor with your knees bent and your feet flat on the floor. Place your arms out to your sides at a 45-degree angle, your palms facing up. Now try to make your tummy as skinny as possible and hold it that way—this gives you a tight core—while breathing normally. That's the starting position\", \"resource_image_id\")");
+        db.execSQL("insert into [plan] values(null,5, 6, 1, 3, 10,\"Stand as tall as you can with your feet spread slightly wider than shoulder-width apart. Hold your arms straight out in front of your body at shoulder level, so that your arms parallel to the floor.\", \"resource_image_id\")");
+        db.execSQL("insert into [plan] values(null,5, 6, 2, 3, 10,\"Assume a push-up position, but place your hands placed on a raised surface—such as a box, bench, ottoman or one of the steps of your stairs—instead of the floor. Your body should form a straight line from your ankles to your head\", \"resource_image_id\")");
+        db.execSQL("insert into [plan] values(null,5, 6, 3, 3, 10,\"Lie on your back on the floor with your knees bent and your feet flat on the floor. Place your arms out to your sides at a 45-degree angle, your palms facing up. Now try to make your tummy as skinny as possible and hold it that way—this gives you a tight core—while breathing normally. That's the starting position\", \"resource_image_id\")");
 
 
     }
