@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.aviorka.bstrong.persistence.Storage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExercisePlan extends AppCompatActivity {
@@ -39,6 +41,7 @@ public class ExercisePlan extends AppCompatActivity {
         db = Storage.geInstance(getBaseContext());
         showData();
     }
+
 
 
     /**
@@ -84,6 +87,17 @@ public class ExercisePlan extends AppCompatActivity {
                 tv.setText("X");
                 break;
         }
+
+        if(tv == null) return;
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Launch
+                tvDetailText.
+
+            }
+        });
     }
 
     public static Intent makeIntent(Context context){
