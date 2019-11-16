@@ -55,8 +55,8 @@ public class ExercisePlan extends AppCompatActivity {
 
         // populate exercises
         List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? )", new String[]{String.valueOf(trainee.getAsInteger("traineeId"))});
-        for(ContentValues muscle : resultSet){
-            setExercise(muscle.getAsInteger("muscleID"), muscle.getAsInteger("recurrenceId"));
+        for(ContentValues planEntry : resultSet){
+            setExercise(planEntry.getAsInteger("planId"), planEntry.getAsInteger("muscleID"), planEntry.getAsInteger("recurrenceId"));
         }
     }
     /**
@@ -64,7 +64,7 @@ public class ExercisePlan extends AppCompatActivity {
      * @param muscle id from DB
      * @param recurrence id from DB
      */
-    private void setExercise(int muscle, int recurrence){
+    private void setExercise(final int planId, int muscle, int recurrence){
         TextView tv = null;
 
         switch(recurrence){
@@ -94,7 +94,7 @@ public class ExercisePlan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Launch
-                tvDetailText.
+                db.getSingle("Select description , imageResourceId from 'plan' where plnId = ? ", new String[] {String.valueOf(planId)});
 
             }
         });
