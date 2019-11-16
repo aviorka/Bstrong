@@ -104,7 +104,6 @@ public class ExercisePlan extends AppCompatActivity {
                 TextView tvDetailImage = findViewById(R.id.tvDetailImage);
                 String imageResourceId = cv.getAsString("imageResourceId");
                 int imageResource = getResources().getIdentifier(imageResourceId, "drawable", getPackageName());
-                //Drawable image = getResources().getDrawable(imageResource);
                 tvDetailImage.setBackgroundResource(imageResource);
             }
         });
