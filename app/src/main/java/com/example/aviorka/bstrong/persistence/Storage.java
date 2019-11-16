@@ -182,13 +182,13 @@ public class Storage extends SQLiteOpenHelper {
         Cursor cur = db.rawQuery(sql, params);
 
         while(cur.moveToNext()) {
-            trainee.put("traineeId", cur.getInt(1));
-            trainee.put("fullName", cur.getInt(1));
-            trainee.put("email", cur.getInt(1));
-            trainee.put("password", cur.getInt(1));
-            trainee.put("age", cur.getInt(1));
-            trainee.put("height", cur.getInt(1));
-            trainee.put("weight", cur.getInt(1));
+            trainee.put("traineeId", cur.getInt(0));
+            trainee.put("fullName", cur.getString(1));
+            trainee.put("email", cur.getString(2));
+            trainee.put("password", cur.getString(3));
+            trainee.put("age", cur.getInt(4));
+            trainee.put("height", cur.getInt(5));
+            trainee.put("weight", cur.getInt(6));
             cur.close();
             db.close();
             return true;
