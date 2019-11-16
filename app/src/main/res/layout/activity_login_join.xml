@@ -41,7 +41,7 @@
         android:id="@+id/tvJuinUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="JUIN US"
+        android:text="JOIN US"
         android:textAlignment="center"
         android:textAllCaps="false" />
 
