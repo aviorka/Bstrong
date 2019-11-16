@@ -29,8 +29,9 @@ public class JoinUs extends AppCompatActivity {
     //The database db.
 
     private EditText textInputEmail;
-    private EditText textInputFullname;
+    private EditText textInputFullName;
     private EditText textInputWeight;
+    private EditText textInputHeight;
     private EditText textInputAge;
     private EditText textInputPassword;
     private EditText textInputConfirmPassword;
@@ -43,12 +44,13 @@ public class JoinUs extends AppCompatActivity {
         db = Storage.geInstance(getApplicationContext());
 
         //Save to Login.
-        textInputFullname = findViewById(R.id.etFullname);
+        textInputFullName = findViewById(R.id.etFullname);
         textInputEmail = findViewById(R.id.etEmail);
         textInputPassword = findViewById(R.id.etPassword);
         textInputConfirmPassword = findViewById(R.id.etConfirmPassword);
         textInputAge = findViewById(R.id.etAge);
         textInputWeight = findViewById(R.id.etWeight);
+        textInputHeight = findViewById(R.id.etHeight);
 
         TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
 
@@ -68,7 +70,7 @@ public class JoinUs extends AppCompatActivity {
 
         try {
             //If one of the validate return false the validation failed .
-            if (!validateEmail() || !validateFullname() || !validatePassword() || !validateAge() || !validateWeight()) {
+            if (!validateEmail() || !validateFullname() || !validatePassword() || !validateAge() || !validateHeight() || !validateWeight() ) {
                 return;
             }
         } catch (Exception e) {
@@ -81,15 +83,17 @@ public class JoinUs extends AppCompatActivity {
        Intent intent = new Intent(JoinUs.this, MyPlan.class);
        intent.putExtra("TRAINEE", trainee);
        startActivity(intent);
+       finish();
     }
 
     //Inserting Trainee
     private ContentValues insertTrainee() {
         ContentValues cv = new ContentValues();
-        cv.put("fullName", textInputFullname.getText().toString().trim());
+        cv.put("fullName", textInputFullName.getText().toString().trim());
         cv.put("email", textInputEmail.getText().toString().trim());
         cv.put("password", textInputPassword.getText().toString().trim());
         cv.put("age", textInputAge.getText().toString().trim());
+        cv.put("height", textInputHeight.getText().toString().trim());
         cv.put("weight", textInputWeight.getText().toString().trim());
 
 
@@ -140,13 +144,21 @@ public class JoinUs extends AppCompatActivity {
 
     //Weight validation
     private boolean validateWeight(){
-        if(textInputWeight.getText().toString().length() > 0 && Integer.parseInt(textInputAge.getText().toString()) < 30){
-            textInputAge.setError("Application support weight 30 and above");
+        if(textInputWeight.getText().toString().length() > 0 && Integer.parseInt(textInputWeight.getText().toString()) < 40  ){
+            textInputWeight.setError("Application support weight 40 and above");
             return false;
         }
         return true;
     }
 
+    //Height validation
+    private boolean validateHeight(){
+        if(textInputHeight.getText().toString().length() > 0 && Integer.parseInt(textInputHeight.getText().toString()) < 140  ){
+            textInputHeight.setError("Application support Height 140cm and above");
+            return false;
+        }
+        return true;
+    }
 
     private boolean validateFullname(){
         if(textInputEmail.getText().toString().length() < 2) {

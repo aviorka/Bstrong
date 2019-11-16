@@ -51,7 +51,7 @@ public class ExercisePlan extends AppCompatActivity {
         tvFullName.setText(trainee.getAsString("fullName"));
 
         // populate exercises
-        List<ContentValues> resultSet = db.getMultiple("select * from 'plan'", new String[]{});
+        List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? )", new String[]{String.valueOf(trainee.getAsInteger("traineeId"))});
         for(ContentValues muscle : resultSet){
             setExercise(muscle.getAsInteger("muscleID"), muscle.getAsInteger("recurrenceId"));
         }

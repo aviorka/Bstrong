@@ -14,7 +14,6 @@ import com.example.aviorka.bstrong.persistence.Storage;
 /**
  * Login
  * This class for login
- * Check if the input is admin and send to another activity
  */
 public class Login extends AppCompatActivity {
 

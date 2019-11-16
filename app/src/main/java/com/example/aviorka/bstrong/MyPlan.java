@@ -159,26 +159,29 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         String equipPlaceHolders = "";
                         String[] params = new String[equipment.size()+1];
 
-                        for(Equipment equip : equipment){
-                            if(equipPlaceHolders.length() > 0){
-                                equipPlaceHolders += ", ";
+                        if(hasEquipment){
+                            for(Equipment equip : equipment){
+                                if(equipPlaceHolders.length() > 0){
+                                    equipPlaceHolders += ", ";
+                                }
+                                equipPlaceHolders += "?";
+                                params[pos] = String.valueOf(equip.getDbId()) ;
+                                pos++;
                             }
-                            equipPlaceHolders += "?";
-                            params[pos] = String.valueOf(equip.getDbId()) ;
-                            pos++;
+                        }else{
+                            equipPlaceHolders = "5";    //depicts no equipment
                         }
+
                         String sql = "select * from plan where equipmentID in (" + equipPlaceHolders + ") and recurrenceID = ? ";
                         params[pos] = String.valueOf(timePerWeek) ;
                         List<ContentValues> cvList = db.getMultiple(sql, params);
 
-                        String userSql = "select traineeId from trainee";
                         // for each plan record insert its planId and recurrence into exercise table
                         ContentValues insertParams = new ContentValues();
 
                         for(ContentValues cv : cvList){
-                            insertParams.put("planId", cv.getAsInteger("id"));
+                            insertParams.put("planId", cv.getAsInteger("planId"));
                             insertParams.put("traineeId", trainee.getAsInteger("traineeId"));
-                            insertParams.put("startDate", currentDate);
                             insertParams.put("recurrenceID", timePerWeek);
                             insertParams.put("startDate", currentDate);
 
