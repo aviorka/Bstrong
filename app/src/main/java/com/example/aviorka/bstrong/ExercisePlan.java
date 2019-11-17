@@ -146,6 +146,7 @@ public class ExercisePlan extends AppCompatActivity {
             }
         });
     }
+    
 
 
     public static Intent makeIntent(Context context){
