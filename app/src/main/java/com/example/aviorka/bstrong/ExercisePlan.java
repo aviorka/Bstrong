@@ -39,6 +39,7 @@ public class ExercisePlan extends AppCompatActivity {
         trainee = (ContentValues)extras.get("TRAINEE");
 
         db = Storage.geInstance(getBaseContext());
+        disableEquipment();
         showData();
     }
 
@@ -70,34 +71,56 @@ public class ExercisePlan extends AppCompatActivity {
         switch(recurrence){
             case RECU_1:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv);
-                setUpEquipment(equipment, planId);
+                setupX(tv, equipment, planId);
                 break;
             case RECU_2:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv);
-                setUpEquipment(equipment, planId);
+                setupX(tv, equipment, planId);
                 tv = findViewById(idMapping[muscle-1][3]);
-                setupX(tv);
-                setUpEquipment(equipment, planId);
+                setupX(tv, equipment, planId);
                 break;
             case RECU_3:
                 tv = findViewById(idMapping[muscle-1][0]);
-                setUpEquipment(equipment, planId);
-                setupX(tv);
+                setupX(tv, equipment, planId);
                 tv = findViewById(idMapping[muscle-1][2]);
-                setupX(tv);
-                setUpEquipment(equipment, planId);
+                setupX(tv, equipment, planId);
                 tv = findViewById(idMapping[muscle-1][4]);
-                setupX(tv);
-                setUpEquipment(equipment, planId);
+                setupX(tv, equipment, planId);
                 break;
         }
 
     }
 
-    private void setupX(TextView tv){
+    private void setupX(TextView tv, final int equipment, final int planId){
         tv.setText("X");
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                disableEquipment();
+                setUpEquipment(equipment, planId);
+
+                // clear exercise details
+                TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
+                tvExerciseDetails.setText("");
+
+                TextView tvDetailImage = findViewById(R.id.tvDetailImage);
+                tvDetailImage.setBackgroundResource(R.drawable.ic_launcher_background);
+            }
+        });
+    }
+
+    private void disableEquipment(){
+        TextView tv;
+        tv = findViewById(R.id.tvDumbbell);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvBench);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvbox);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvmedicinbox);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvNoEquipment);
+        tv.setEnabled(false);
     }
 
     private void setUpEquipment(int equipment, final int planId){
@@ -105,26 +128,25 @@ public class ExercisePlan extends AppCompatActivity {
         switch (equipment){
             case 1:
                 tv = findViewById(R.id.tvDumbbell);
-                setUpExercise(tv, planId);
                 break;
             case 2:
                 tv = findViewById(R.id.tvBench);
-                setUpExercise(tv, planId);
                 break;
             case 3:
                 tv = findViewById(R.id.tvbox);
-                setUpExercise(tv, planId);
                 break;
             case 4:
                 tv = findViewById(R.id.tvmedicinbox);
-                setUpExercise(tv, planId);
                 break;
             case 5:
                 tv = findViewById(R.id.tvNoEquipment);
-                setUpExercise(tv, planId);
                 break;
                 default:
+                    return;
         }
+
+        setUpExercise(tv, planId);
+        tv.setEnabled(true);
     }
 
     //TODO Add explanation on final planId (Why we use final - Because we have anonymous class)
