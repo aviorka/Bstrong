@@ -56,7 +56,7 @@ public class ExercisePlan extends AppCompatActivity {
         // populate exercises
         List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? )", new String[]{String.valueOf(trainee.getAsInteger("traineeId"))});
         for(ContentValues planEntry : resultSet){
-            setExercise(planEntry.getAsInteger("planId"), planEntry.getAsInteger("muscleID"), planEntry.getAsInteger("recurrenceId"));
+            setExercise(planEntry.getAsInteger("planId"), planEntry.getAsInteger("muscleID"), planEntry.getAsInteger("recurrenceId"), planEntry.getAsInteger("equipmentId"));
         }
     }
     /**
@@ -64,34 +64,72 @@ public class ExercisePlan extends AppCompatActivity {
      * @param muscle id from DB
      * @param recurrence id from DB
      */
-    private void setExercise(final int planId, int muscle, int recurrence){
+    private void setExercise(final int planId, int muscle, int recurrence, int equipment){
         TextView tv = null;
 
         switch(recurrence){
             case RECU_1:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setUpExercise(tv, planId);
+                setupX(tv);
+                setUpEquipment(equipment, planId);
                 break;
             case RECU_2:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setUpExercise(tv, planId);
+                setupX(tv);
+                setUpEquipment(equipment, planId);
                 tv = findViewById(idMapping[muscle-1][3]);
-                setUpExercise(tv, planId);
+                setupX(tv);
+                setUpEquipment(equipment, planId);
                 break;
             case RECU_3:
                 tv = findViewById(idMapping[muscle-1][0]);
-                setUpExercise(tv, planId);
+                setUpEquipment(equipment, planId);
+                setupX(tv);
                 tv = findViewById(idMapping[muscle-1][2]);
-                setUpExercise(tv, planId);
+                setupX(tv);
+                setUpEquipment(equipment, planId);
                 tv = findViewById(idMapping[muscle-1][4]);
-                setUpExercise(tv, planId);
+                setupX(tv);
+                setUpEquipment(equipment, planId);
                 break;
         }
 
     }
 
-    private void setUpExercise(TextView tv, final int planId){
+    private void setupX(TextView tv){
         tv.setText("X");
+    }
+
+    private void setUpEquipment(int equipment, final int planId){
+        TextView tv;
+        switch (equipment){
+            case 1:
+                tv = findViewById(R.id.tvDumbbell);
+                setUpExercise(tv, planId);
+                break;
+            case 2:
+                tv = findViewById(R.id.tvBench);
+                setUpExercise(tv, planId);
+                break;
+            case 3:
+                tv = findViewById(R.id.tvbox);
+                setUpExercise(tv, planId);
+                break;
+            case 4:
+                tv = findViewById(R.id.tvmedicinbox);
+                setUpExercise(tv, planId);
+                break;
+            case 5:
+                tv = findViewById(R.id.tvNoEquipment);
+                setUpExercise(tv, planId);
+                break;
+                default:
+        }
+    }
+
+    //TODO Add explanation on final planId (Why we use final - Because we have anonymous class)
+    private void setUpExercise(TextView tv, final int planId){
+
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
