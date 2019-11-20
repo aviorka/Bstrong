@@ -176,14 +176,20 @@ public class JoinUs extends AppCompatActivity {
 
     //Age validation
     private boolean validateAge(){
-        if(textInputAge.getText().toString().length() == 0 ){
-            textInputAge.setError("Please fill your age ");
-            return false;
+        try{
+            if(textInputAge.getText().toString().length() == 0 ){
+                textInputAge.setError("Please fill your age ");
+                return false;
             } else if(Integer.parseInt(textInputAge.getText().toString()) < 16){
-            textInputAge.setError("Application support age 16 and above");
+                textInputAge.setError("Application support age 16 and above");
+                return false;
+            }
+            return true;
+        }catch (NumberFormatException e){
+            textInputAge.setError("Age can contain only numbers");
             return false;
         }
-        return true;
+
     }
 
 
