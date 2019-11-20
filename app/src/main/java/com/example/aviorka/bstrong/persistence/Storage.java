@@ -255,6 +255,13 @@ public class Storage extends SQLiteOpenHelper {
         return newId;
     }
 
+    public void update(String table, ContentValues values, String whereClause, String[] whereArgs){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int newId = db.update(table, values, whereClause, whereArgs);
+        db.close(); // Closing database connection
+
+    }
+
     //Delete data
     public void delete(String table, String whereClause, String[] whereArgs){
         SQLiteDatabase db = this.getWritableDatabase();

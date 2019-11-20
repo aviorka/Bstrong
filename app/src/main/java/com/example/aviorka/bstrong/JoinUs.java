@@ -37,6 +37,13 @@ public class JoinUs extends AppCompatActivity {
     private EditText textInputConfirmPassword;
     private Storage db;
 
+    private  String currentEmail;
+
+    private boolean isEditMode = false;
+
+    private static final boolean PASS = true;
+    private static final boolean FAIL = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +62,19 @@ public class JoinUs extends AppCompatActivity {
         TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
 
         Bundle extras = getIntent().getExtras();
-        ContentValues trainee = (ContentValues)extras.get("TRAINEE");
-        if(trainee != null){
-            populateTrainee(trainee);
+        if(extras != null){
+            ContentValues trainee = (ContentValues)extras.get("TRAINEE");
+            if(trainee != null){
+                isEditMode = true;
+                textInputFullName.setText(trainee.getAsString("fullName"));
+                textInputEmail.setText(trainee.getAsString("email"));
+                textInputPassword.setText(trainee.getAsString("password"));
+                textInputAge.setText(trainee.getAsString("age"));
+                textInputHeight.setText(trainee.getAsString("height"));
+                textInputWeight.setText(trainee.getAsString("weight"));
+
+                currentEmail = trainee.getAsString("email");    //backup current email
+            }
         }
 
         //onClick on text view join us for register activity.
@@ -71,10 +88,6 @@ public class JoinUs extends AppCompatActivity {
         });
     }
 
-    private void populateTrainee(ContentValues trainee){
-
-    }
-
     public void confirmInput(View v) {
 
         try {
@@ -86,10 +99,18 @@ public class JoinUs extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ContentValues trainee = insertTrainee();
+        ContentValues trainee;
+        Intent intent;
+        if(isEditMode)
+            trainee = updateTrainee();
+        else
+         trainee = insertTrainee();
 
         //Start MY PLANE activity
-       Intent intent = new Intent(JoinUs.this, MyPlan.class);
+        if(isEditMode)
+            intent = new Intent(JoinUs.this, ExercisePlan.class);
+        else
+            intent = new Intent(JoinUs.this, MyPlan.class);
        intent.putExtra("TRAINEE", trainee);
        startActivity(intent);
        finish();
@@ -112,6 +133,19 @@ public class JoinUs extends AppCompatActivity {
         return cv;
     }
 
+    private ContentValues updateTrainee(){
+        ContentValues cv = new ContentValues();
+        cv.put("fullName", textInputFullName.getText().toString().trim());
+        cv.put("email", textInputEmail.getText().toString().trim());
+        cv.put("password", textInputPassword.getText().toString().trim());
+        cv.put("age", textInputAge.getText().toString().trim());
+        cv.put("height", textInputHeight.getText().toString().trim());
+        cv.put("weight", textInputWeight.getText().toString().trim());
+
+        db.update("trainee", cv, "email = ?", new String[]{ currentEmail});
+        return cv;
+    }
+
     //Validate Email
     private boolean validateEmail() {
         String email = textInputEmail.getText().toString().trim();
@@ -121,13 +155,15 @@ public class JoinUs extends AppCompatActivity {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             textInputEmail.setError("Please enter a valid email address");
             return false;
-        } else if (checkIfEmailExists(email)) {  //Check if email already exist
-            textInputEmail.setError("Email already exist");
-            return false;
-        } else {
-            textInputEmail.setError(null);
-            return true;
+        } else if (isEditMode && (!currentEmail.equalsIgnoreCase(textInputEmail.getText().toString()) ) || !isEditMode ) {
+            if(checkIfEmailExists(email)) {//Check if email already exist
+                textInputEmail.setError("Email already exist");
+                return false;
+            }
         }
+        textInputEmail.setError(null);
+        return true;
+
     }
 
     //Check if email exist
