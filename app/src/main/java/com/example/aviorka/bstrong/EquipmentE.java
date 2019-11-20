@@ -100,7 +100,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
             es.setSelected(false);
             toast( es.getName() +" was removed");
             view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
-            equipmentList.remove(Integer.valueOf(view.getId()));
+            equipmentList.remove(es);
         }
     }
 
@@ -112,6 +112,5 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
-        return;
     }
 }
