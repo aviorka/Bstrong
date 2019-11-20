@@ -41,6 +41,30 @@ public class ExercisePlan extends AppCompatActivity {
         db = Storage.geInstance(getBaseContext());
         disableEquipment();
         showData();
+
+        TextView tvEditPlan = findViewById(R.id.tvEditPlan);
+        tvEditPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Start MY PLANE activity
+                Intent intent = new Intent(ExercisePlan.this, MyPlan.class);
+                intent.putExtra("TRAINEE", trainee);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        TextView tvEditTrainee = findViewById(R.id.tvEditTrainee);
+        tvEditTrainee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Start MY PLANE activity
+                Intent intent = new Intent(ExercisePlan.this, JoinUs.class);
+                intent.putExtra("TRAINEE", trainee);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 

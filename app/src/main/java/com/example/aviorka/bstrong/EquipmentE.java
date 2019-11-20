@@ -54,19 +54,18 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         Bundle extras = getIntent().getExtras();
         equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
 
-//        String sql = "select * from equipment";
-//        String params[] = new String[]{};
-//        List<ContentValues> cvList = db.getMultiple(sql, params);
-
         //TODO add view id to the constructor - DONE
-        EquipmentMap.put(dumbbell.getId(), new Equipment(false, "dumbbell", 1, dumbbell.getId()));
-        EquipmentMap.put(bench.getId(), new Equipment(false, "bench", 2, bench.getId()));
-        EquipmentMap.put(box.getId(), new Equipment(false, "box", 3, box.getId()));
-        EquipmentMap.put(medicineBox.getId(), new Equipment(false, "medicineBall", 4, medicineBox.getId()));
+        EquipmentMap.put(R.id.dumbbellIVE, new Equipment(false, "dumbbell", 1, R.id.dumbbellIVE));
+        EquipmentMap.put(R.id.benchIVE, new Equipment(false, "bench", 2, R.id.benchIVE));
+        EquipmentMap.put(R.id.boxIVE, new Equipment(false, "box", 3, R.id.boxIVE));
+        EquipmentMap.put(R.id.medicinboxIVE, new Equipment(false, "medicineBall", 4, R.id.medicinboxIVE));
+        EquipmentMap.put(-1, new Equipment(false, "No Equipment", 5, -1));
 
         // TODO Use Equipment view id - DONE
         for(Equipment equip : equipmentList) {
-            EquipmentMap.get(equip.getDbId()).setSelected(true);
+            if(equip.getDbId() == 5)    // skip No Equipment since it is not displayed
+                continue;
+            EquipmentMap.get(equip.getViewId()).setSelected(true);
             findViewById(equip.getViewId()).setBackground(getResources().getDrawable(R.drawable.background_selected));
         }
 
@@ -89,19 +88,24 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        Equipment es = EquipmentMap.get(view.getId());
-
-        if(!es.isSelected()){   //If equipment was not selected select it
-            es.setSelected(true);
-            toast( es.getName() +" was selected");
-            view.setBackground(getResources().getDrawable(R.drawable.background_selected));
-            equipmentList.add(es);    // TODO fix  - add EquipmentSatte instead if its id - DONE
-        }else {
-            es.setSelected(false);
-            toast( es.getName() +" was removed");
-            view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
-            equipmentList.remove(es);
+        for(Equipment es : EquipmentMap.values()){
+            if(es.getViewId() != -1 && findViewById(es.getViewId()).equals(view)){
+                if(!es.isSelected()){   //If equipment was not selected select it
+                    es.setSelected(true);
+                    toast( es.getName() +" was selected");
+                    view.setBackground(getResources().getDrawable(R.drawable.background_selected));
+                    equipmentList.add(es);    // TODO fix  - add EquipmentSate instead if its id - DONE
+                }else {
+                    es.setSelected(false);
+                    toast( es.getName() +" was removed");
+                    view.setBackground(getResources().getDrawable(R.drawable.background_unselected));
+                    equipmentList.remove(es);
+                }
+                break;
+            }
         }
+        //Equipment es = EquipmentMap.get(view.getId());
+
     }
 
     public static Intent makeIntent(Context context){

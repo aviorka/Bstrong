@@ -611,5 +611,36 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
+
+        <TextView
+            android:id="@+id/tvEditTrainee"
+            android:layout_width="102dp"
+            android:layout_height="21dp"
+            android:layout_weight="1"
+            android:height="200dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="Edit User"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvEditPlan"
+            android:layout_width="102dp"
+            android:layout_height="21dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:height="200dp"
+            android:background="@drawable/border"
+            android:text="Edit Plan" />
+
+
+
+
+    </LinearLayout>
 </GridLayout>

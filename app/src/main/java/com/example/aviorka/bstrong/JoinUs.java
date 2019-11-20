@@ -54,6 +54,12 @@ public class JoinUs extends AppCompatActivity {
 
         TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
 
+        Bundle extras = getIntent().getExtras();
+        ContentValues trainee = (ContentValues)extras.get("TRAINEE");
+        if(trainee != null){
+            populateTrainee(trainee);
+        }
+
         //onClick on text view join us for register activity.
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +71,9 @@ public class JoinUs extends AppCompatActivity {
         });
     }
 
+    private void populateTrainee(ContentValues trainee){
+
+    }
 
     public void confirmInput(View v) {
 
