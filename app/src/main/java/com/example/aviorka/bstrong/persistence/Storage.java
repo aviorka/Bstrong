@@ -95,28 +95,6 @@ public class Storage extends SQLiteOpenHelper {
         db.execSQL("insert into muscle values(null,\"Triceps\")");
         db.execSQL("insert into muscle values(null,\"Shoulders\")");
 
-        //
-//        db.execSQL("insert into [plan] values(null,1, 1, 1, 3, 8,\"Stand with your feet slightly wider than shoulders width apart. Hold a dumbbell in front of your chest with both your hands. Perform a squat until your hams touch your calves. Keep your back straight, and head and chest up.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,1, 1, 2, 3, 8,\"Your front knee should not extend farther than your big toe and the quad of the second leg should be parallel to the calf of the front leg while you’re at the bottom of the movement. \", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,1, 1, 3, 3, 10,\"Using dumbbells lets your arms free and you can follow a movement where you have the greatest amount of tension on your quads.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,2, 2, 1, 3, 10,\"Lie back on a flat bench. Using a close grip (around shoulder width), lift the bar from the rack and hold it straight over you with your arms locked. This will be your starting position.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,2, 2, 2, 2, 10,\"Stand facing away from a bench, grab it with both hands at shoulder-width.\n" +
-//                "Extend your legs out in front of you. Slowly lower your body by flexing at the elbows until your arm at forearm create a 90-degree angle.\n" +
-//                "Using your triceps lift yourself back to the starting position.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,2, 3, 3, 2, 12,\"lay back on an incline bench with a dumbbell on each hand on top of your thighs. The palms of your hand will be facing each other.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,3, 3, 1, 2, 12,\"Sit with knees bent and feet flat on the floor, holding medicine ball to your chest. Lean back slightly at a 45-degree angle to the floor, engaging your core.\n" +
-//                "Keep feet flexed with heels lightly touching the floor. Rotate to the right, keeping the ball at your chest, and twist from your low back.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,3, 4, 2, 3, 8,\"Sit with knees bent and feet flat on the floor, holding medicine ball to your chest. Lean back slightly at a 45-degree angle to the floor, engaging your core.\n" +
-//                "Keep feet flexed with heels lightly touching the floor. Rotate to the right, keeping the ball at your chest, and twist from your low back.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,3, 4, 3, 3, 9,\"Sit with knees bent and feet flat on the floor, holding medicine ball to your chest. Lean back slightly at a 45-degree angle to the floor, engaging your core.\n" +
-//                "Keep feet flexed with heels lightly touching the floor. Rotate to the right, keeping the ball at your chest, and twist from your low back.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,4, 5, 1, 1, 9,\"Step up on the box and then step down , each time starting with a different leg \", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,4, 5, 2, 2, 7,\"jump over the box forth and back \", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,4, 6, 3, 3, 10,\"Sit down on the box and then stand up \", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,5, 6, 1, 3, 10,\"Stand as tall as you can with your feet spread slightly wider than shoulder-width apart. Hold your arms straight out in front of your body at shoulder level, so that your arms parallel to the floor.\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,5, 6, 2, 3, 10,\"Assume a push-up position, but place your hands placed on a raised surface—such as a box, bench, ottoman or one of the steps of your stairs—instead of the floor. Your body should form a straight line from your ankles to your head\", \"resource_image_id\")");
-//        db.execSQL("insert into [plan] values(null,5, 6, 3, 3, 10,\"Lay on your back on the floor with your knees bent and your feet flat on the floor. Place your arms out to your sides at a 45-degree angle, your palms facing up. Now try to make your tummy as skinny as possible and hold it that way—this gives you a tight core—while breathing normally. That's the starting position\", \"step_up_with_knee_raise\")");
-//        db.execSQL("insert into [plan] values(null,5, 5, 3, 3, 10,\"Lay on your back on the floor having the palm of your hands leaning on the floor and your elbows bent. Try elevating your body by streaching your elbow for 10 seconds, than bend down to rest for 5 seconds\", \"hands_on_floor\")");
 
         //Inserting exercise data
         //Dumbbell

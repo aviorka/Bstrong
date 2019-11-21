@@ -30,7 +30,15 @@ import java.util.Map;
 public class EquipmentE extends AppCompatActivity implements View.OnClickListener {
 
     private Storage db;
-    private Map<Integer, Equipment> EquipmentMap = new HashMap<>();
+    public static  Map<Integer, Equipment> EquipmentMap = new HashMap<>();
+
+    static{
+        EquipmentMap.put(R.id.dumbbellIVE, new Equipment(false, "dumbbell", 1, R.id.dumbbellIVE));
+        EquipmentMap.put(R.id.benchIVE, new Equipment(false, "bench", 2, R.id.benchIVE));
+        EquipmentMap.put(R.id.boxIVE, new Equipment(false, "box", 3, R.id.boxIVE));
+        EquipmentMap.put(R.id.medicinboxIVE, new Equipment(false, "medicineBall", 4, R.id.medicinboxIVE));
+        EquipmentMap.put(-1, new Equipment(false, "No Equipment", 5, -1));
+    }
     List<Equipment> equipmentList = new ArrayList<>();
 
 
@@ -55,11 +63,7 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
 
         //TODO add view id to the constructor - DONE
-        EquipmentMap.put(R.id.dumbbellIVE, new Equipment(false, "dumbbell", 1, R.id.dumbbellIVE));
-        EquipmentMap.put(R.id.benchIVE, new Equipment(false, "bench", 2, R.id.benchIVE));
-        EquipmentMap.put(R.id.boxIVE, new Equipment(false, "box", 3, R.id.boxIVE));
-        EquipmentMap.put(R.id.medicinboxIVE, new Equipment(false, "medicineBall", 4, R.id.medicinboxIVE));
-        EquipmentMap.put(-1, new Equipment(false, "No Equipment", 5, -1));
+
 
         // TODO Use Equipment view id - DONE
         for(Equipment equip : equipmentList) {

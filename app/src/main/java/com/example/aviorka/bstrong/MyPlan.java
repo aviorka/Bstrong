@@ -87,19 +87,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         timePerWeek = i+1;
-
-                        TextView tvDaysPerWeek = findViewById(R.id.tvDaysPerWeek);
-                        switch (timePerWeek){
-                            case 1:
-                                tvDaysPerWeek.setText("1 day is for motivation");
-                                break;
-                            case 2:
-                                tvDaysPerWeek.setText("2 days is a good beginning");
-                                break;
-                            case 3:
-                                tvDaysPerWeek.setText("3 days is awesome");
-                                break;
-                        }
+                        setSelectedRecurrence(timePerWeek);
                     }
                 });
 
@@ -107,6 +95,26 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                 alertDialog.show();
             }
         });
+
+        // If activity was activated from ExercisePlan, check populate GUI with selected recurrence and equipment
+        ContentValues cv = getRecurrence();
+        setSelectedRecurrence(cv.getAsInteger("recurrenceId") + 1);
+
+        //
+        List<ContentValues> cvList = getEquipment();
+
+        for(ContentValues eq : cvList){
+            if(eq.getAsInteger("equipmentId") == 5) {   // if this is No Equipment
+                cbNoEquipment.setChecked(true);
+                break;
+            }else{
+                for(Equipment e : EquipmentE.EquipmentMap.values()){
+                    if(e.getDbId() == eq.getAsInteger("equipmentId"))
+                        equipment.add(e);
+                }
+
+            }
+        }
 
 
         final Context ctx = getApplicationContext();
@@ -176,6 +184,9 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         params[pos] = String.valueOf(timePerWeek) ;
                         List<ContentValues> cvList = db.getMultiple(sql, params);
 
+                        // delete existing records from exercise for current user
+                        db.delete("exercise", "traineeId = ?", new String[]{trainee.getAsString("traineeId")});
+
                         // for each plan record insert its planId and recurrence into exercise table
                         ContentValues insertParams = new ContentValues();
 
@@ -202,6 +213,30 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
     }
 
+    private ContentValues getRecurrence(){
+        ContentValues cv = db.getSingle("select top 1 recurrenceId from exercise where traineeId = ?", new String[]{trainee.getAsString("traineeId")});
+        return cv;
+    }
+
+    private List<ContentValues> getEquipment(){
+        List<ContentValues> cvList = db.getMultiple("select distinct equipmentId from [plan] where planId in (select planId from exercise where traineeId = ?)", new String[]{trainee.getAsString("traineeId")});
+        return cvList;
+    }
+
+    private void setSelectedRecurrence(int timePerWeek){
+        TextView tvDaysPerWeek = findViewById(R.id.tvDaysPerWeek);
+        switch (timePerWeek){
+            case 1:
+                tvDaysPerWeek.setText("1 day is for motivation");
+                break;
+            case 2:
+                tvDaysPerWeek.setText("2 days is a good beginning");
+                break;
+            case 3:
+                tvDaysPerWeek.setText("3 days is awesome");
+                break;
+        }
+    }
     //Building plan ============================================================ MOST IMPORTANT !!
     private void buildingPlan(List<String> equipment) {
 
