@@ -31,7 +31,9 @@ public class Login extends AppCompatActivity {
 
         TextView tvjuinUs = (TextView) findViewById(R.id.tvJuinUs);
 
-        //Check if user already exist pass move to login
+        /**
+         * If user did not sign up
+         */
         tvjuinUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,19 +45,40 @@ public class Login extends AppCompatActivity {
     }
 
 
-    //Check if user name & password exist in database
+    /**
+     * Authenticate user
+     * @param v
+     */
     public void CheckDetails(View v) {
         String email = textInputEmail.getText().toString().trim();
         String pass = textInputPassword.getText().toString().trim();
         ContentValues trainee = new ContentValues();
-        //Check match between user name and pass
+
+        /**
+         * Check if user has exercise plan :
+         * User doesn't have : start my plan activity.
+         * User has plan: start exercise .
+         */
         if ((db.checkMatchForUser(email, pass, trainee))) {
-            //Start MY PLANE activity
-            Intent intent = new Intent(Login.this, ExercisePlan.class);
+            String sql = "select count{*} as countExercise from exercise where traineeId = ?";
+            String params[] = {trainee.getAsString("traineeId")};
+            ContentValues cv = db.getSingle(sql,params);
+            Intent intent;
+
+            if(cv.getAsInteger("countExercise") > 0 ) {
+                //Start Exercise plan  activity
+                intent = new Intent(Login.this, ExercisePlan.class);
+            } else {
+                //Start MY PLANE activity
+                intent = new Intent(Login.this,  MyPlan.class);
+            }
+
+
             intent.putExtra("TRAINEE", trainee);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
             startActivity(intent);
             finish();
+
         } else {
             Toast.makeText(getApplicationContext(), "Login Failed. The email or password you entered is incorrect", Toast.LENGTH_LONG).show();
             textInputEmail.setError("Email or Password don't match!");
