@@ -95,33 +95,37 @@ public class ExercisePlan extends AppCompatActivity {
         switch(recurrence){
             case RECU_1:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 break;
             case RECU_2:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 tv = findViewById(idMapping[muscle-1][3]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 break;
             case RECU_3:
                 tv = findViewById(idMapping[muscle-1][0]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 tv = findViewById(idMapping[muscle-1][2]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 tv = findViewById(idMapping[muscle-1][4]);
-                setupX(tv, equipment, planId);
+                setupX(tv, equipment, planId, recurrence);
                 break;
         }
 
     }
 
-    private void setupX(TextView tv, final int equipment, final int planId){
+    private void setupX(TextView tv, final int equipment, final int planId, final int recurrenceId){
         tv.setText("X");
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disableEquipment();
-                setUpEquipment(equipment, planId);
+                List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? )", new String[]{String.valueOf(trainee.getAsInteger("traineeId"))});
+                for(ContentValues record : resultSet){
+                    setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
+                }
+
 
                 // clear exercise details
                 TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
