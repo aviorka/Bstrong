@@ -21,7 +21,7 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/trainee_profile_email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -38,7 +38,7 @@
             android:id="@+id/etFullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full name"
+            android:hint="@string/trainee_profile_fullname"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -55,7 +55,7 @@
             android:id="@+id/etAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Age"
+            android:hint="@string/trainee_profile_age"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -72,7 +72,7 @@
             android:id="@+id/etHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Height"
+            android:hint="@string/trainee_profile_height"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +88,7 @@
             android:id="@+id/etWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Weight"
+            android:hint="@string/trainee_profile_weight"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -103,7 +103,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/trainee_profile_password"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout
         >
@@ -120,7 +120,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="@string/trainee_profile_password_confirm"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -131,13 +131,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="confirmInput"
-        android:text="Confirm" />
+        android:text="@string/trainee_profile_save" />
 
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Already a member? Login here"
+        android:text="@string/trainee_profile_member"
         android:textAlignment="center"
         android:textAllCaps="false" />
 

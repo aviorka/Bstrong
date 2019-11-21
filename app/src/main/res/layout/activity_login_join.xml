@@ -14,7 +14,7 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/login_email"
         android:inputType="textEmailAddress"
         android:text="b@gmail.com" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/login_password"
         android:inputType="textPassword"
         android:text="bbbb" />
 
@@ -35,13 +35,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="CheckDetails"
-        android:text="Login" />
+        android:text="@string/login_login" />
 
     <TextView
         android:id="@+id/tvJuinUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="JOIN US"
+        android:text="@string/login_joinus"
         android:textAlignment="center"
         android:textAllCaps="false" />
 

@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="45dp"
         android:gravity="center"
-        android:text="EQUIPMENT"
+        android:text="@string/my_plan_equipment"
         android:textStyle="bold" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Tell us what equipment you have"
+        android:text="@string/my_plan_title"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -36,7 +36,7 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
-        android:text="Select Equipment"
+        android:text="@string/my_plan_select_equipment"
         android:textSize="10sp" />
 
     <CheckBox
@@ -64,7 +64,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="WORKOUTS PER WEEK"
+        android:text="@string/my_plan_recurrence"
         android:textStyle="bold" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="How many times a week you can practice "
+        android:text="@string/my_plan_recurrence_title"
         android:textStyle="italic" />
 
     <Button
@@ -85,7 +85,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="150dp"
         android:layout_marginTop="20dp"
-        android:text="Select"
+        android:text="@string/my_plan_reccurence_select"
         android:textSize="10sp" />
 
     <TextView
@@ -115,7 +115,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="The best time to start is today"
+        android:text="@string/my_plan_slogan"
         android:textStyle="italic" />
 
     <TextView
@@ -128,7 +128,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:minWidth="280dp"
-        android:text="Date"
+        android:text="@string/my_plan_date"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -140,5 +140,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="135dp"
         android:layout_marginTop="45dp"
-        android:text="let's start" />
+        android:text="@string/my_plan_start" />
 </LinearLayout>

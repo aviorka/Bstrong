@@ -15,17 +15,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="66dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvStam"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="         " />
         <TextView
             android:gravity="center"
             android:id="@+id/tvSunday"
             android:layout_width="49dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Su" />
+            android:text="@string/Day_Sun" />
 
 
         <TextView
@@ -34,40 +37,40 @@
             android:layout_width="49dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Mo" />
+            android:text="@string/Day_Mon" />
         <TextView
             android:id="@+id/tvTuesday"
             android:gravity="center"
             android:layout_width="49dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Tu" />
+            android:text="@string/Day_Tue" />
         <TextView
             android:id="@+id/tvWednesday"
             android:gravity="center"
             android:layout_width="49dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="We" />
+            android:text="@string/Day_Wed" />
 
         <TextView
             android:id="@+id/tvThursday"
             android:gravity="center"
             android:layout_width="49dp"        android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Th" />
+            android:text="@string/Day_Thu" />
         <TextView
             android:id="@+id/tvFriday"
             android:gravity="center"
             android:layout_width="49dp"        android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Fr" />
+            android:text="@string/Day_Fri" />
         <TextView
             android:id="@+id/tvSaturday"
             android:gravity="center"
             android:layout_width="49dp"        android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Sa" />
+            android:text="@string/Day_Sat" />
     </LinearLayout>
     <!-- Legs -->
     <LinearLayout
@@ -81,7 +84,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Legs"
+            android:text="@string/muscle_legs"
             android:background="@drawable/border"/>
 
         <TextView
@@ -155,7 +158,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Back"
+            android:text="@string/muscle_back"
             android:background="@drawable/border"/>
 
         <TextView
@@ -229,7 +232,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Chest"
+            android:text="@string/muscle_chest"
             android:background="@drawable/border"/>
 
         <TextView
@@ -303,7 +306,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Biceps"
+            android:text="@string/muscle_bicept"
             android:background="@drawable/border"/>
 
         <TextView
@@ -377,7 +380,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Triceps"
+            android:text="@string/muscle_tricept"
             android:background="@drawable/border"/>
 
         <TextView
@@ -451,7 +454,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Shoulders"
+            android:text="@string/muscle_shoulders"
             android:background="@drawable/border"/>
 
         <TextView
@@ -520,7 +523,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <View
-            android:id="@+id/divider"
+            android:id="@+id/divider_a"
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:background="?android:attr/listDivider" />
@@ -589,6 +592,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
+        <View
+            android:id="@+id/divider_b"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
 
         <TextView
@@ -626,7 +640,7 @@
             android:height="200dp"
             android:background="@drawable/border"
             android:gravity="center"
-            android:text="Edit User"
+            android:text="@string/edit_trainee"
             android:visibility="visible" />
 
         <TextView
@@ -637,7 +651,7 @@
             android:layout_weight="1"
             android:height="200dp"
             android:background="@drawable/border"
-            android:text="Edit Plan" />
+            android:text="@string/edit_plan" />
 
 
 
