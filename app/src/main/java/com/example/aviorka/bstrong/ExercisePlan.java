@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,9 @@ public class ExercisePlan extends AppCompatActivity {
 
     private ContentValues trainee;
     private Storage db ;
+
+    private View lastSelectedXview;
+    private Drawable lastXviewBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +121,7 @@ public class ExercisePlan extends AppCompatActivity {
 
     }
 
-    private View lastSelectedX;
+
     private void setupX(TextView tv, final int muscleId, final int equipmentId, final int recurrenceId){
         tv.setText("X");
         tv.setOnClickListener(new View.OnClickListener() {
@@ -125,13 +129,13 @@ public class ExercisePlan extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
-
-                if(lastSelectedX != null){
-                    lastSelectedX.setBackgroundColor(Color.WHITE);
+                if(lastSelectedXview != null){
+                    lastSelectedXview.setBackground(lastXviewBackground);
                 }
+
+                lastSelectedXview = view;
+                lastXviewBackground = view.getBackground();
                 view.setBackgroundColor(Color.RED);
-                lastSelectedX = view;
 
                 // clear exercise details
                 TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
