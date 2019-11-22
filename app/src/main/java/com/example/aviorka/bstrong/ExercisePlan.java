@@ -115,15 +115,19 @@ public class ExercisePlan extends AppCompatActivity {
 
     }
 
-    private void setupX(TextView tv, final int muscle, final int planId, final int recurrenceId){
+    private void setupX(TextView tv, final int muscle, final int equipmentId, final int recurrenceId){
         tv.setText("X");
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disableEquipment();
-                List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscle-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
-                for(ContentValues record : resultSet){
-                    setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
+                if(equipmentId == 5){
+.setVisibility(View.GONE);
+                }else {
+                    disableEquipment();
+                    List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscle-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
+                    for(ContentValues record : resultSet){
+                        setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
+                    }
                 }
 
 
@@ -135,6 +139,19 @@ public class ExercisePlan extends AppCompatActivity {
                 tvDetailImage.setBackgroundResource(R.drawable.ic_launcher_background);
             }
         });
+    }
+    private void hideEquipment(){
+        TextView tv;
+        tv = findViewById(R.id.tvDumbbell);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvBench);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvbox);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvmedicinbox);
+        tv.setEnabled(false);
+        tv = findViewById(R.id.tvNoEquipment);
+        tv.setEnabled(false);
     }
 
     private void disableEquipment(){
