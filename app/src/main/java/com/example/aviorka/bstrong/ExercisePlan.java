@@ -82,7 +82,6 @@ public class ExercisePlan extends AppCompatActivity {
                 Intent intent = new Intent(ExercisePlan.this, JoinUs.class);
                 intent.putExtra("TRAINEE", trainee);
                 startActivity(intent);
-                finish();
             }
         });
     }

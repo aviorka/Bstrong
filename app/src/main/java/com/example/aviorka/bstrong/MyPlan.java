@@ -107,6 +107,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
                 if(hasEquipment == true && isChecked == true) {
                     equipmentList.clear();
+                    hasEquipment = false;
                     Toast.makeText(getApplicationContext(), "Equipment removed ", Toast.LENGTH_LONG).show();
                 }else
                     hasEquipment = !isChecked;
@@ -208,7 +209,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
         for(ContentValues eq : cvList){
             if(eq.getAsInteger("equipmentId") == 5) {   // if this is No Equipment
                 cbNoEquipment.setChecked(true);
-                hasEquipment = true;
+                hasEquipment = false;
                 break;
             }else{
                 for(Equipment e : EquipmentE.EquipmentMap.values()){
@@ -218,6 +219,8 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
             }
         }
+        if(equipmentList.size() > 0)
+            hasEquipment = true;
 
     }
 
@@ -294,12 +297,10 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
             String[] equipArr;
             Bundle extras = data.getExtras();
-            if(extras == null) {
-                equipArr= null;
-            } else {
+            if(extras != null) {
                 equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
             }
-            if(equipmentList.size() == 0)
+            if(equipmentList != null && equipmentList.size() == 0)  // equipment was not selected -> No equipment
                 hasEquipment = false;
             else{
                 hasEquipment =true;
