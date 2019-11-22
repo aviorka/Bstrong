@@ -43,7 +43,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
     boolean hasEquipment;
     boolean hasOpenedEquipActivity;
 
-    private List<Equipment> equipment ;
+    private List<Equipment> equipmentList;
     private Storage db;
     private ContentValues trainee;
 
@@ -52,7 +52,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_plan);
-        equipment= new ArrayList<>();
+        equipmentList = new ArrayList<>();
         db = Storage.geInstance(super.getBaseContext());
 
         selectEqu = findViewById(R.id.selectEquBtn);
@@ -96,36 +96,17 @@ public class MyPlan extends AppCompatActivity implements Serializable {
             }
         });
 
-        // If activity was activated from ExercisePlan, check populate GUI with selected recurrence and equipment
-        ContentValues cv = getRecurrence();
-        if(cv.size() > 0)
-            setSelectedRecurrence(cv.getAsInteger("recurrenceId"));
-
-        List<ContentValues> cvList = getEquipment();
-        for(ContentValues eq : cvList){
-            if(eq.getAsInteger("equipmentId") == 5) {   // if this is No Equipment
-                cbNoEquipment.setChecked(true);
-                break;
-            }else{
-                for(Equipment e : EquipmentE.EquipmentMap.values()){
-                    if(e.getDbId() == eq.getAsInteger("equipmentId"))
-                        equipment.add(e);
-                }
-
-            }
-        }
-
 
         final Context ctx = getApplicationContext();
         /**
-         * CheckBox - Check if user marked the no equipment checkbox
+         * CheckBox - Check if user marked the no equipmentList checkbox
          */
         cbNoEquipment.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(hasEquipment == true && isChecked == true) {
-                    equipment.clear();
+                    equipmentList.clear();
                     Toast.makeText(getApplicationContext(), "Equipment removed ", Toast.LENGTH_LONG).show();
                 }else
                     hasEquipment = !isChecked;
@@ -135,7 +116,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
         /**
          * select Equipment_
-         * hasOpenedEquipActivity - Check if user open the equipment selection
+         * hasOpenedEquipActivity - Check if user open the equipmentList selection
          */
         selectEqu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +124,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                 hasOpenedEquipActivity = true;
                 //Launch the equipmentE activity
                 Intent intent = EquipmentE.makeIntent(MyPlan.this);
-                intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList)equipment);
+                intent.putStringArrayListExtra("SELECTED_EQUIPMENT",(ArrayList) equipmentList);
                 startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
             }
         });
@@ -158,7 +139,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
                 try {
                     if (!hasEquipment && !cbNoEquipment.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Did you forget to mark an equipment? ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Did you forget to mark an equipmentList? ", Toast.LENGTH_LONG).show();
                         return;
                     }else if (checkDaysPerWeek()) {
 
@@ -167,8 +148,8 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                         String[] params;
 
                         if(hasEquipment){
-                            params = new String[equipment.size()+1];
-                            for(Equipment equip : equipment){
+                            params = new String[equipmentList.size()+1];
+                            for(Equipment equip : equipmentList){
                                 if(equipPlaceHolders.length() > 0){
                                     equipPlaceHolders += ", ";
                                 }
@@ -178,7 +159,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                             }
                         }else{
                             params = new String[2];
-                            equipPlaceHolders = "?";    //depicts no equipment
+                            equipPlaceHolders = "?";    //depicts no equipmentList
                             params[pos] = "5";
                             pos++;
                         }
@@ -214,6 +195,30 @@ public class MyPlan extends AppCompatActivity implements Serializable {
             }
         });
 
+        /**
+         * If activity was activated from ExercisePlan
+         * restore the recurrence and equipmentList state
+         */
+
+        ContentValues cv = getRecurrence();
+        if(cv.size() > 0)
+            setSelectedRecurrence(cv.getAsInteger("recurrenceId"));
+
+        List<ContentValues> cvList = getEquipmentList();
+        for(ContentValues eq : cvList){
+            if(eq.getAsInteger("equipmentId") == 5) {   // if this is No Equipment
+                cbNoEquipment.setChecked(true);
+                hasEquipment = true;
+                break;
+            }else{
+                for(Equipment e : EquipmentE.EquipmentMap.values()){
+                    if(e.getDbId() == eq.getAsInteger("equipmentId"))
+                        equipmentList.add(e);
+                }
+
+            }
+        }
+
     }
 
     private ContentValues getRecurrence(){
@@ -221,7 +226,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
         return cv;
     }
 
-    private List<ContentValues> getEquipment(){
+    private List<ContentValues> getEquipmentList(){
         List<ContentValues> cvList = db.getMultiple("select distinct equipmentId from [plan] where planId in (select planId from exercise where traineeId = ?)", new String[]{trainee.getAsString("traineeId")});
         return cvList;
     }
@@ -246,12 +251,12 @@ public class MyPlan extends AppCompatActivity implements Serializable {
     private void buildingPlan(List<String> equipment) {
 
         int index = 0;
-        //Looping Array List to add the selected equipment to the plan
+        //Looping Array List to add the selected equipmentList to the plan
         while (equipment.size() > index) {
 
             switch (equipment.get(index)){
                 case "box":
-                    //Here i want to add the equipment to table
+                    //Here i want to add the equipmentList to table
                     break;
                 case "dumbbell":
                     break;
@@ -278,7 +283,7 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
 
     /**
-     * Get the equipment result from EqipmentE activity
+     * Get the equipmentList result from EqipmentE activity
      * @param requestCode
      * @param resultCode
      * @param data
@@ -292,9 +297,9 @@ public class MyPlan extends AppCompatActivity implements Serializable {
             if(extras == null) {
                 equipArr= null;
             } else {
-                equipment= (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
+                equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
             }
-            if(equipment.size() == 0)
+            if(equipmentList.size() == 0)
                 hasEquipment = false;
             else{
                 hasEquipment =true;

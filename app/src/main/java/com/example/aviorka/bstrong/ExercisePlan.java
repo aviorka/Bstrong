@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.graphics.drawable.ColorDrawable;
 
 
 import com.example.aviorka.bstrong.persistence.Storage;
@@ -35,6 +34,15 @@ public class ExercisePlan extends AppCompatActivity {
     private View lastSelectedXview;
     private Drawable lastXviewBackground;
 
+    private TextView tvDumbbell;
+    private TextView tvBench;
+    private TextView tvbox;
+    private TextView tvmedicinbox;
+    private TextView tvNoEquipment;
+
+    private View lastSelectedEquipmentView;
+    private Drawable lastSelectedEquipmentBg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,12 @@ public class ExercisePlan extends AppCompatActivity {
         // get ContentValues object containing trainee data from JoinUs
         Bundle extras = getIntent().getExtras();
         trainee = (ContentValues)extras.get("TRAINEE");
+
+        tvDumbbell = findViewById(R.id.tvDumbbell);
+        tvBench = findViewById(R.id.tvBench);
+        tvbox = findViewById(R.id.tvbox);
+        tvmedicinbox = findViewById(R.id.tvmedicinbox);
+        tvNoEquipment = findViewById(R.id.tvNoEquipment);
 
         db = Storage.geInstance(getBaseContext());
         disableEquipment();
@@ -129,6 +143,7 @@ public class ExercisePlan extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                // if X is selected, back up its color and restore when other X is selected
                 if(lastSelectedXview != null){
                     lastSelectedXview.setBackground(lastXviewBackground);
                 }
@@ -136,6 +151,11 @@ public class ExercisePlan extends AppCompatActivity {
                 lastSelectedXview = view;
                 lastXviewBackground = view.getBackground();
                 view.setBackgroundColor(Color.RED);
+
+                // if equipment was selected, restore its color
+                if(lastSelectedEquipmentView != null){
+                    lastSelectedEquipmentView.setBackground(lastSelectedEquipmentBg);
+                }
 
                 // clear exercise details
                 TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
@@ -159,7 +179,7 @@ public class ExercisePlan extends AppCompatActivity {
 
                 }else {
                     disableEquipment();
-                    List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscleId-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
+                    List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(muscleId), String.valueOf(recurrenceId)});
                     for(ContentValues record : resultSet){
                         setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
                     }
@@ -169,50 +189,40 @@ public class ExercisePlan extends AppCompatActivity {
         });
     }
     private void hideEquipment(){
-        TextView tv;
-        tv = findViewById(R.id.tvDumbbell);
-        tv.setVisibility(View.GONE);
-        tv = findViewById(R.id.tvBench);
-        tv.setVisibility(View.GONE);
-        tv = findViewById(R.id.tvbox);
-        tv.setVisibility(View.GONE);
-        tv = findViewById(R.id.tvmedicinbox);
-        tv.setVisibility(View.GONE);
-        tv = findViewById(R.id.tvNoEquipment);
-        tv.setVisibility(View.GONE);
+        tvDumbbell.setVisibility(View.GONE);
+        tvBench.setVisibility(View.GONE);
+        tvbox.setVisibility(View.GONE);
+        tvmedicinbox.setVisibility(View.GONE);
+        tvNoEquipment.setVisibility(View.GONE);
     }
 
     private void disableEquipment(){
         TextView tv;
-        tv = findViewById(R.id.tvDumbbell);
-        tv.setEnabled(false);
-        tv = findViewById(R.id.tvBench);
-        tv.setEnabled(false);
-        tv = findViewById(R.id.tvbox);
-        tv.setEnabled(false);
-        tv = findViewById(R.id.tvmedicinbox);
-        tv.setEnabled(false);
-        tv = findViewById(R.id.tvNoEquipment);
-        tv.setEnabled(false);
+
+        tvDumbbell.setEnabled(false);
+        tvBench.setEnabled(false);
+        tvbox.setEnabled(false);
+        tvmedicinbox.setEnabled(false);
+        tvNoEquipment.setEnabled(false);
     }
 
     private void setUpEquipment(int equipment, final int planId){
         TextView tv;
         switch (equipment){
             case 1:
-                tv = findViewById(R.id.tvDumbbell);
+                tv = tvDumbbell;
                 break;
             case 2:
-                tv = findViewById(R.id.tvBench);
+                tv = tvBench;
                 break;
             case 3:
-                tv = findViewById(R.id.tvbox);
+                tv = tvbox;
                 break;
             case 4:
-                tv = findViewById(R.id.tvmedicinbox);
+                tv = tvmedicinbox;
                 break;
             case 5:
-                tv = findViewById(R.id.tvNoEquipment);
+                tv = tvNoEquipment;
                 break;
                 default:
                     return;
@@ -228,6 +238,13 @@ public class ExercisePlan extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(lastSelectedEquipmentView != null){
+                    lastSelectedEquipmentView.setBackground(lastSelectedEquipmentBg);
+                }
+                lastSelectedEquipmentView = view;
+                lastSelectedEquipmentBg = view.getBackground();
+                view.setBackgroundColor(Color.RED);
+
                 ContentValues cv;
                 cv = db.getSingle("Select description , imageResourceId from 'plan' where planId = ? ", new String[] {String.valueOf(planId)});
 
