@@ -164,9 +164,10 @@ public class MyPlan extends AppCompatActivity implements Serializable {
 
                         int pos = 0;
                         String equipPlaceHolders = "";
-                        String[] params = new String[equipment.size()+1];
+                        String[] params;
 
                         if(hasEquipment){
+                            params = new String[equipment.size()+1];
                             for(Equipment equip : equipment){
                                 if(equipPlaceHolders.length() > 0){
                                     equipPlaceHolders += ", ";
@@ -176,7 +177,10 @@ public class MyPlan extends AppCompatActivity implements Serializable {
                                 pos++;
                             }
                         }else{
-                            equipPlaceHolders = "5";    //depicts no equipment
+                            params = new String[2];
+                            equipPlaceHolders = "?";    //depicts no equipment
+                            params[pos] = "5";
+                            pos++;
                         }
 
                         String sql = "select * from plan where equipmentID in (" + equipPlaceHolders + ") and recurrenceID = ? ";

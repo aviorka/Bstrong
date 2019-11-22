@@ -3,11 +3,13 @@ package com.example.aviorka.bstrong;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ColorDrawable;
+
 
 import com.example.aviorka.bstrong.persistence.Storage;
 
@@ -95,41 +97,41 @@ public class ExercisePlan extends AppCompatActivity {
         switch(recurrence){
             case RECU_1:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 break;
             case RECU_2:
                 tv = findViewById(idMapping[muscle-1][1]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 tv = findViewById(idMapping[muscle-1][3]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 break;
             case RECU_3:
                 tv = findViewById(idMapping[muscle-1][0]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 tv = findViewById(idMapping[muscle-1][2]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 tv = findViewById(idMapping[muscle-1][4]);
-                setupX(tv, muscle, planId, recurrence);
+                setupX(tv, muscle, equipment, recurrence);
                 break;
         }
 
     }
 
-    private void setupX(TextView tv, final int muscle, final int equipmentId, final int recurrenceId){
+    private View lastSelectedX;
+    private void setupX(TextView tv, final int muscleId, final int equipmentId, final int recurrenceId){
         tv.setText("X");
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(equipmentId == 5){
-.setVisibility(View.GONE);
-                }else {
-                    disableEquipment();
-                    List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscle-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
-                    for(ContentValues record : resultSet){
-                        setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
-                    }
-                }
 
+
+
+
+                if(lastSelectedX != null){
+                    lastSelectedX.setBackgroundColor(Color.WHITE);
+                }
+                view.setBackgroundColor(Color.RED);
+                lastSelectedX = view;
 
                 // clear exercise details
                 TextView tvExerciseDetails = findViewById(R.id.tvDetailText);
@@ -137,21 +139,43 @@ public class ExercisePlan extends AppCompatActivity {
 
                 TextView tvDetailImage = findViewById(R.id.tvDetailImage);
                 tvDetailImage.setBackgroundResource(R.drawable.ic_launcher_background);
+
+                if(equipmentId == 5){
+
+                    hideEquipment();
+                    ContentValues cv;
+                    cv = db.getSingle("Select description , imageResourceId from 'plan' where recurrenceId = ? and muscleId = ? and equipmentId = 5 ",new String[]{String.valueOf(recurrenceId),String.valueOf(muscleId) });
+
+                    tvExerciseDetails.setText(cv.getAsString("description"));
+                    String imageResourceId = cv.getAsString("imageResourceId");
+
+                    int imageResource = getResources().getIdentifier(imageResourceId, "drawable", getPackageName());
+                    tvDetailImage.setBackgroundResource(imageResource);
+
+
+                }else {
+                    disableEquipment();
+                    List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscleId-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
+                    for(ContentValues record : resultSet){
+                        setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
+                    }
+                }
+
             }
         });
     }
     private void hideEquipment(){
         TextView tv;
         tv = findViewById(R.id.tvDumbbell);
-        tv.setEnabled(false);
+        tv.setVisibility(View.GONE);
         tv = findViewById(R.id.tvBench);
-        tv.setEnabled(false);
+        tv.setVisibility(View.GONE);
         tv = findViewById(R.id.tvbox);
-        tv.setEnabled(false);
+        tv.setVisibility(View.GONE);
         tv = findViewById(R.id.tvmedicinbox);
-        tv.setEnabled(false);
+        tv.setVisibility(View.GONE);
         tv = findViewById(R.id.tvNoEquipment);
-        tv.setEnabled(false);
+        tv.setVisibility(View.GONE);
     }
 
     private void disableEquipment(){
