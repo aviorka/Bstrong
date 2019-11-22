@@ -24,10 +24,15 @@ public class AutoPicture extends AppCompatActivity {
         setContentView(R.layout.activity_auto_picture);
 
         //Two button for login & join
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
-        Button btnJoinUs = (Button) findViewById(R.id.btnJoinUs);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        Button btnJoinUs = findViewById(R.id.btnJoinUs);
 
-        mylay = (RelativeLayout) findViewById(R.id.myLayout);
+        mylay =  findViewById(R.id.myLayout);
+        Timer timer = new Timer();
+        MyTimer mt = new MyTimer();
+
+        //Displays an image for 4 seconds
+        timer.schedule(mt, 2000, 2000);
 
         //Start Login activity
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -47,12 +52,6 @@ public class AutoPicture extends AppCompatActivity {
             }
         });
 
-
-        Timer timer = new Timer();
-        MyTimer mt = new MyTimer();
-
-        //Displays an image for 4 seconds
-        timer.schedule(mt, 2000, 2000);
     }
 
     //Runnable classn for runnig images from images array

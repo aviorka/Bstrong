@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
          * User has plan: start exercise .
          */
         if ((db.checkMatchForUser(email, pass, trainee))) {
-            String sql = "select count{*} as countExercise from exercise where traineeId = ?";
+            String sql = "select count(*) as countExercise from exercise where traineeId = ?";
             String params[] = {trainee.getAsString("traineeId")};
             ContentValues cv = db.getSingle(sql,params);
             Intent intent;

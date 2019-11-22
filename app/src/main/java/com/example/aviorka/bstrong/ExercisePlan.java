@@ -121,7 +121,7 @@ public class ExercisePlan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 disableEquipment();
-                List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscle), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
+                List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? and muscleId = ? and recurrenceId = ?)", new String[]{String.valueOf(muscle-1), String.valueOf(trainee.getAsInteger("traineeId")), String.valueOf(recurrenceId)});
                 for(ContentValues record : resultSet){
                     setUpEquipment(record.getAsInteger("equipmentId"), record.getAsInteger("planId"));
                 }
