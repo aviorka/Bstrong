@@ -305,7 +305,7 @@ public class Storage extends SQLiteOpenHelper {
             trainee.put("password", cur.getString(3));
             trainee.put("age", cur.getInt(4));
             trainee.put("height", cur.getInt(5));
-            trainee.put("weight", cur.getInt(6));
+            trainee.put("weight", cur.getInt(6));   // error in Avi's pc
             cur.close();
             db.close();
             return true;
