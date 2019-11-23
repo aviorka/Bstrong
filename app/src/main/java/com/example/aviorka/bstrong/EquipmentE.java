@@ -62,9 +62,13 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
         Bundle extras = getIntent().getExtras();
         equipmentList = (ArrayList<Equipment>)extras.getSerializable("SELECTED_EQUIPMENT");
 
-        //TODO add view id to the constructor - DONE
 
-
+        /**
+         * Initialize EquipmentMap member state to false
+         */
+        for(Equipment eq : EquipmentMap.values()){
+            eq.setSelected(false);
+        }
         // TODO Use Equipment view id - DONE
         for(Equipment equip : equipmentList) {
             if(equip.getDbId() == 5)    // skip No Equipment since it is not displayed
