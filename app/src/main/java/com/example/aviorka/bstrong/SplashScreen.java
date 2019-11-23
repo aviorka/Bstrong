@@ -6,7 +6,7 @@ import android.os.Bundle;
 /*
  * SplashScreen
  * Use thread for waiting until the app build
- * Show the logo
+ * Show the ic_bstrong
  * sleep for 5 sec
  */
 public class SplashScreen extends AppCompatActivity {

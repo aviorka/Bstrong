@@ -313,4 +313,24 @@ public class MyPlan extends AppCompatActivity implements Serializable {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.edit_plan_back_alert_title)  // title of your dialog
+                .setMessage(R.string.edit_plan_back_alert_body)  // message of dialog
+                .setPositiveButton(R.string.button_yes,  // String for positive
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // do positive action here
+
+                                finish();
+                            }
+                        }).setNegativeButton(R.string.button_no, // String for negative action
+                null).show();
+
+    }
+
 }

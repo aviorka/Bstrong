@@ -55,4 +55,12 @@
     <string name="login_email">אימייל</string>
     <string name="login_password">סיסמא</string>
     <string name="trainee_profile_member">כבר הצטרפת? לחץ  כאן</string>
+    <string name="edit_plan_back_alert_title">עריכת אימון:</string>
+    <string name="edit_plan_back_alert_body">לא סיימת , אתה רוצה לצאת?</string>
+    <string name="button_yes">כן</string>
+    <string name="button_no">לא</string>
+    <string name="exercise_plan_back_alert_body">האם סיימת?</string>
+    <string name="exercise_plan_back_alert_title">תוכנית אימון</string>
+    <string name="juin_us_back_alet_body">השינויים לא ישמרו , לצאת?</string>
+    <string name="juin_us_back_alert_title">הרשמה</string>
 </resources>

@@ -58,4 +58,12 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="trainee_profile_member">Already a member? Login here</string>
+    <string name="edit_plan_back_alert_title">Quit before save ?</string>
+    <string name="edit_plan_back_alert_body">Exit before saving?</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
+    <string name="exercise_plan_back_alert_body">Are you done?</string>
+    <string name="exercise_plan_back_alert_title">Exercise plan</string>
+    <string name="juin_us_back_alet_body">Chenges made will not be saved, Exit?</string>
+    <string name="juin_us_back_alert_title">JuinUs</string>
 </resources>

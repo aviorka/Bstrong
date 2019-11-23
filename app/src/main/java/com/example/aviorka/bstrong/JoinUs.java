@@ -1,7 +1,9 @@
 package com.example.aviorka.bstrong;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -37,6 +39,7 @@ public class JoinUs extends AppCompatActivity {
     private EditText textInputConfirmPassword;
     private Storage db;
 
+    private ContentValues trainee;
     private  String currentEmail;
 
     private boolean isEditMode = false;
@@ -99,21 +102,22 @@ public class JoinUs extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ContentValues trainee;
         Intent intent;
-        if(isEditMode)
-            trainee = updateTrainee();
-        else
-         trainee = insertTrainee();
 
-        //Start MY PLANE activity
-        if(isEditMode)
-            intent = new Intent(JoinUs.this, ExercisePlan.class);
-        else
+        if(isEditMode){
+            trainee = updateTrainee();
+            intent = new Intent();
+            intent.putExtra("TRAINEE", trainee);
+            setResult(RESULT_OK, intent);
+        }
+        else{
+            trainee = insertTrainee();
             intent = new Intent(JoinUs.this, MyPlan.class);
-       intent.putExtra("TRAINEE", trainee);
-       startActivity(intent);
-       finish();
+            intent.putExtra("TRAINEE", trainee);
+            startActivity(intent);
+        }
+        finish();
+
     }
 
     //Inserting Trainee
@@ -247,6 +251,32 @@ public class JoinUs extends AppCompatActivity {
             textInputConfirmPassword.setError("Password don't match!");
             return false;
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.juin_us_back_alert_title)  // title of your dialog
+                .setMessage(R.string.juin_us_back_alet_body)  // message of dialog
+                .setPositiveButton(R.string.button_yes,  // String for positive
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // do positive action here
+                                if(isEditMode){
+                                    Intent intent = new Intent();
+                                    intent.putExtra("TRAINEE", trainee);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+                                }
+
+                                finish();
+                            }
+                        }).setNegativeButton(R.string.button_no, // String for negative action
+                null).show();
 
     }
 

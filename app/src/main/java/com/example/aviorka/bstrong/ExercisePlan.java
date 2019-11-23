@@ -2,9 +2,11 @@ package com.example.aviorka.bstrong;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.aviorka.bstrong.persistence.Storage;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ExercisePlan extends AppCompatActivity {
@@ -50,8 +53,8 @@ public class ExercisePlan extends AppCompatActivity {
 
         // get ContentValues object containing trainee data from JoinUs
         Bundle extras = getIntent().getExtras();
-        trainee = (ContentValues)extras.get("TRAINEE");
 
+        trainee = (ContentValues)extras.get("TRAINEE");
         tvDumbbell = findViewById(R.id.tvDumbbell);
         tvBench = findViewById(R.id.tvBench);
         tvbox = findViewById(R.id.tvbox);
@@ -264,4 +267,33 @@ public class ExercisePlan extends AppCompatActivity {
         return new Intent(context, ExercisePlan.class);
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exercise_plan_back_alert_title)  // title of your dialog
+                .setMessage(R.string.exercise_plan_back_alert_body)  // message of dialog
+                .setPositiveButton(R.string.button_yes,  // String for positive
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // do positive action here
+
+                                finish();
+                            }
+                        }).setNegativeButton(R.string.button_no, // String for negative action
+                null).show();
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                trainee = (ContentValues) data.getExtras().get("TRAINEE");
+            }
+        }
+    }
 }
