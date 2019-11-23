@@ -35,7 +35,7 @@
     <string name="trainee_profile_age">גיל</string>
     <string name="trainee_profile_email">אימייל</string>
     <string name="trainee_profile_fullname">שם מלא</string>
-    <string name="trainee_profile_height">גובה</string>
+    <string name="trainee_profile_height">גובה(סמ)</string>
     <string name="trainee_profile_password">סיסמא</string>
     <string name="trainee_profile_password_confirm">אימות סיסמא</string>
     <string name="trainee_profile_weight">משקל</string>

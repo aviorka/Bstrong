@@ -78,7 +78,7 @@ public class ExercisePlan extends AppCompatActivity {
         tvEditTrainee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Start MY PLANE activity
+                //Start JoinUs activity
                 Intent intent = new Intent(ExercisePlan.this, JoinUs.class);
                 intent.putExtra("TRAINEE", trainee);
                 startActivity(intent);

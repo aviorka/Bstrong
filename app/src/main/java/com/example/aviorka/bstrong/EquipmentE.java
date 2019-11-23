@@ -88,7 +88,10 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    //View : Switch case that choose trainee equipment selection
+    /**
+     * User equipment selection
+     * @param view
+     */
     @Override
     public void onClick(View view) {
 
@@ -108,8 +111,6 @@ public class EquipmentE extends AppCompatActivity implements View.OnClickListene
                 break;
             }
         }
-        //Equipment es = EquipmentMap.get(view.getId());
-
     }
 
     public static Intent makeIntent(Context context){
