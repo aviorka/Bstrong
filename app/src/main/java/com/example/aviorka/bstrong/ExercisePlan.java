@@ -46,6 +46,8 @@ public class ExercisePlan extends AppCompatActivity {
     private View lastSelectedEquipmentView;
     private Drawable lastSelectedEquipmentBg;
 
+    public static final int REQUEST_CODE_GETMESSAGE = 1014;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class ExercisePlan extends AppCompatActivity {
                 Intent intent = new Intent(ExercisePlan.this, MyPlan.class);
                 intent.putExtra("TRAINEE", trainee);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
 
@@ -84,7 +86,8 @@ public class ExercisePlan extends AppCompatActivity {
                 //Start JoinUs activity
                 Intent intent = new Intent(ExercisePlan.this, JoinUs.class);
                 intent.putExtra("TRAINEE", trainee);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_GETMESSAGE);
+
             }
         });
     }
@@ -97,8 +100,7 @@ public class ExercisePlan extends AppCompatActivity {
      */
     private void showData(){
         // display trainee full name
-        TextView tvFullName = findViewById(R.id.tvFullName);
-        tvFullName.setText(trainee.getAsString("fullName"));
+        setFullName();
 
         // populate exercises
         List<ContentValues> resultSet = db.getMultiple("select * from 'plan' where planId in (select planId from exercise where traineeId = ? )", new String[]{String.valueOf(trainee.getAsInteger("traineeId"))});
@@ -290,10 +292,21 @@ public class ExercisePlan extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                trainee = (ContentValues) data.getExtras().get("TRAINEE");
+
+        if (resultCode == RESULT_OK) {
+            ContentValues cv = (ContentValues) data.getExtras().get("TRAINEE");
+            if(cv != null){
+                trainee = cv;
             }
         }
+        setFullName();
+    }
+
+    /**
+     * display trainee full name
+     */
+    private void setFullName(){
+        TextView tvFullName = findViewById(R.id.tvFullName);
+        tvFullName.setText(trainee.getAsString("fullName"));
     }
 }

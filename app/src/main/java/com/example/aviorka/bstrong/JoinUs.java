@@ -66,7 +66,7 @@ public class JoinUs extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            ContentValues trainee = (ContentValues)extras.get("TRAINEE");
+            trainee = (ContentValues)extras.get("TRAINEE");
             if(trainee != null){
                 isEditMode = true;
                 textInputFullName.setText(trainee.getAsString("fullName"));
@@ -147,6 +147,7 @@ public class JoinUs extends AppCompatActivity {
         cv.put("weight", textInputWeight.getText().toString().trim());
 
         db.update("trainee", cv, "email = ?", new String[]{ currentEmail});
+        cv.put("traineeId", trainee.getAsInteger("traineeId"));
         return cv;
     }
 
